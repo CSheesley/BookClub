@@ -15,6 +15,7 @@
 
 # Review
 - Title
-- User
+- User_id <linked>
+- Book_id <linked>
 - Text
 - Rating
