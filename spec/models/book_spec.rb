@@ -8,4 +8,9 @@ RSpec.describe Book, type: :model do
     it { should validate_presence_of :cover}
   end
 
+  describe 'Relationships' do
+    it { should have_many :book_authors }
+    it { should have_many(:authors).through :book_authors }
+    it { should have_many :reviews }
+  end
 end
