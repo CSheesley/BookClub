@@ -30,3 +30,10 @@ views must match method names inside folder that is named after resource/Control
 `rails server` or `rails s`
 
 `rails console` or `rails c` instead of tux
+
+`raisl g migration AddArtistToSongs artist:references`
+
+Can put `!` on create for testing
+
+`has_many :playlist_songs`
+`has_many :songs, through: :playlist_songs`
