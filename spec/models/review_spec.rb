@@ -7,4 +7,8 @@ RSpec.describe Review, type: :model do
     it { should validate_presence_of :user}
     it { should validate_presence_of :rating}
   end
+
+  describe 'Relationships' do
+    it { should belong_to :book}
+  end
 end
