@@ -30,7 +30,7 @@ RSpec.describe 'book partial render', type: :view do
     render book_2
 
     # binding.pry
-    expect(response).to have_xpath("//div[@id='book-card-#{book_1.id}']")
+    expect(response).to have_xpath("//div[@id='book-card-#{book_2.id}']")
     within "#book-card-#{book_2.id}" do
       expect(response).to have_content(book_2.title)
       expect(response).to have_content("Author(s): #{book_2.author_names.join(", ")}")
