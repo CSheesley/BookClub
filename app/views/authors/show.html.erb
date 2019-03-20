@@ -1,0 +1,18 @@
+<h1>Author Show Page</h1>
+
+<section id="author-info">
+  <li><%= @author.name %><li>
+</section>
+
+<section id="authors-books">
+    <% @books.each do |book| %>
+  <div id=<%= "book-#{book.id}" %>>
+      <h3><%= book.title %></h3>
+      <ul>
+        <li>Pages: <%= book.pages %></li>
+        <li>Year of Publication: <%= book.year %></li>
+        <li>Co-Authors: <%= book.co_authors %></li>
+      </ul>
+    <% end %>
+  </div>
+</section>
