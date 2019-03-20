@@ -8,8 +8,6 @@ RSpec.describe 'book partial render', type: :view do
 
     render book_1
 
-    # binding.pry
-
     expect(response).to have_xpath("//div[@id='book-card-#{book_1.id}']")
     within "#book-card-#{book_1.id}" do
       expect(response).to have_content(book_1.titlea)
@@ -27,9 +25,9 @@ RSpec.describe 'book partial render', type: :view do
 
     book_2 = author_2.books.create(title: "Title_2", pages: 400, year: 1998, cover: "othermadeupurl.com")
     book_2.authors << author_3
+
     render book_2
 
-    # binding.pry
     expect(response).to have_xpath("//div[@id='book-card-#{book_2.id}']")
     within "#book-card-#{book_2.id}" do
       expect(response).to have_content(book_2.title)
