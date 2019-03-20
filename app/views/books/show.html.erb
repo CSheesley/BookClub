@@ -5,12 +5,7 @@
 </section>
 <section id=reviews>
   <% @reviews.each do |review| %>
-  <ul id = <%="review-#{review.id}"%>>
-    <li><%= review.title %></li>
-    <li><%= review.text %></li>
-    <li><%= review.rating %></li>
-    <li><%= review.user %></li>
-  </ul>
+    <%= render review %>
   <%end%>
 
 </section>
