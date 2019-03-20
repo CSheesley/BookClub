@@ -1,0 +1,12 @@
+<div id = <%="book-card-#{@book.id}"%> >
+  <h3 id = book-title ><%= book.title %></h3>
+  <ul>
+    <li id = book-pages>Pages: <%= book.pages %></li>
+    <li id = book-year>Year of Publication: <%= book.year %></li>
+    <li id = book-cover><img src = <%=book.cover%>></li>
+    <li>Author(s): <%= book.author_names.join(", ") %></li>
+
+
+  </ul>
+
+</div>
