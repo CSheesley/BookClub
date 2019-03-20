@@ -3,7 +3,7 @@
 <section id=book-info>
   <ul>
     <li><%= @book.title %><li>
-    <li>Author(s): <%= @book.authors %><li>
+    <li>Author(s): <%= @book.author_names.join(", ") %><li>
     <li>Pages: <%= @book.pages %><li>
     <li>Year of Publication: <%= @book.year %><li>
     <li><img src="<%= @book.cover %>"><li>
@@ -11,7 +11,7 @@
 </section>
 <section id=reviews>
   <% @reviews.each do |review| %>
-  <ul id = <%="review_#{review.id}"%>>
+  <ul id = <%="review-#{review.id}"%>>
     <li><%= review.title %></li>
     <li><%= review.text %></li>
     <li><%= review.rating %></li>
