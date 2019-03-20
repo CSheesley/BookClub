@@ -27,6 +27,13 @@ RSpec.describe 'book show page', type: :feature do
         expect(page).to have_content("Year of Publication: #{book_1.year}")
         expect(page).to have_xpath("//img[@src='#{book_1.cover}']")
       end
+
+      within "#reviews" do
+        expect(page).to have_content(review_1.title)
+        expect(page).to have_content(review_1.text)
+        expect(page).to have_content(review_1.rating)
+        expect(page).to have_content(review_1.user)
+      end
     end
   end
 end
