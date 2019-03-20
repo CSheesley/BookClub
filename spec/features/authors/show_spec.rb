@@ -19,26 +19,14 @@ RSpec.describe 'author show page', type: :feature do
       review_4 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 5, user: "User_2")
 
       visit author_path(author_2)
-
-        # expect(page).to have_content(author_2.books)
-
-        # expect(page).to have_xpath(//div[@id=book-card-#{book_2.id}])
-
-        # Every "Book card" will be in a <div> tag WHERE id="book-card-#{:id}"
+      expect(page).to have_xpath("//section[@id='author-info']")
 
       within "#author-info" do
         expect(page).to have_content(author_2.name)
       end
-      within "#books-#{book_2.id}" do
-        expect(page).to have_content("Pages: #{book_2.pages}")
-        expect(page).to have_content("Year of Publication: #{book_2.year}")
-        expect(page).to have_content("Co-Authors: #{book_2.co_authors(author_2).join(", ")}")
-      end
-      within "#books-#{book_3.id}" do
-        expect(page).to have_content("Pages: #{book_3.pages}")
-        expect(page).to have_content("Year of Publication: #{book_3.year}")
-        expect(page).to_not have_content("Co-Authors:")
-      end
+
+      expect(page).to have_xpath("//div[@id='book-card-#{book_2.id}']")
+      expect(page).to have_xpath("//div[@id='book-card-#{book_3.id}']")
     end
   end
 end
