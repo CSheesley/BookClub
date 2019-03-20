@@ -7,4 +7,12 @@ class Book < ApplicationRecord
   has_many :book_authors
   has_many :authors, through: :book_authors
   has_many :reviews
+
+  def author_names
+    authors.pluck(:name)
+  end
+
+  def co_authors(author)
+    authors.where.not(id: author.id).pluck(:name)
+  end
 end

@@ -6,12 +6,16 @@
 
 <section id="authors-books">
     <% @books.each do |book| %>
-  <div id=<%= "book-#{book.id}" %>>
+
+
+  <div id=<%= "books-#{book.id}" %>>
       <h3><%= book.title %></h3>
       <ul>
         <li>Pages: <%= book.pages %></li>
         <li>Year of Publication: <%= book.year %></li>
-        <li>Co-Authors: <%= book.co_authors %></li>
+        <% if book.co_authors(@author).length > 0 %>
+          <li>Co-Authors: <%= book.co_authors(@author).join(", ") %></li>
+        <%end%>
       </ul>
     <% end %>
   </div>
