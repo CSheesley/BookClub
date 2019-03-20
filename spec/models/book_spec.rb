@@ -13,4 +13,10 @@ RSpec.describe Book, type: :model do
     it { should have_many(:authors).through :book_authors }
     it { should have_many :reviews }
   end
+
+  describe 'Class Method' do
+    it "overrides the .authors method; returns a list of strings(names)" do
+      
+    end
+  end
 end
