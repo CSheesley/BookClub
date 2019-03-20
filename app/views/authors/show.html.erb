@@ -6,9 +6,9 @@
 
 <section id="authors-books">
     <% @books.each do |book| %>
-    
 
-  <div id=<%= "book-#{book.id}" %>>
+
+  <div id=<%= "books-#{book.id}" %>>
       <h3><%= book.title %></h3>
       <ul>
         <li>Pages: <%= book.pages %></li>
