@@ -3,18 +3,15 @@ require 'rails_helper'
 RSpec.describe 'author show page', type: :feature do
   context 'as a visitor' do
     it 'should show each of the authors books - its title, publication year, page count, and any other authors' do
+
       author_1 = Author.create(name: "J.R.R Tolkein")
       author_2 = Author.create(name: "William Peterson")
       author_3 = Author.create(name: "Corey Sheesley")
 
-      book_1 = Book.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
-      book_2 = Book.create(title: "Title_2", pages: 400, year: 1998, cover: "othermadeupurl.com")
-      book_3 = Book.create(title: "Art of Data", pages: 400, year: 2000, cover: "otherothermadeupurl.com")
-
-      book_author_1 = BookAuthor.create(book: book_1, author: author_1)
-      book_author_2 = BookAuthor.create(book: book_2, author: author_2)
-      book_author_3 = BookAuthor.create(book: book_2, author: author_3)
-      book_author_4 = BookAuthor.create(book: book_3, author: author_2)
+      book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+      book_2 = author_2.books.create(title: "Title_2", pages: 400, year: 1998, cover: "othermadeupurl.com")
+      book_2.authors << author_3
+      book_3 = author_2.books.create(title: "Art of Data", pages: 400, year: 2000, cover: "otherothermadeupurl.com")
 
       review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
       review_2 = book_2.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
