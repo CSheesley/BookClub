@@ -10,6 +10,13 @@
   </ul>
 </section>
 <section id=reviews>
-  
+  <% @reviews.each do |review| %>
+  <ul id = <%="review_#{review.id}"%>>
+    <li><%= review.title %></li>
+    <li><%= review.text %></li>
+    <li><%= review.rating %></li>
+    <li><%= review.user %></li>
+  </ul>
+  <%end%>
 
 </section>
