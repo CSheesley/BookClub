@@ -29,11 +29,40 @@ RSpec.describe 'book show page', type: :feature do
       end
 
       within "#reviews" do
-        expect(page).to have_content(review_1.title)
-        expect(page).to have_content(review_1.text)
-        expect(page).to have_content(review_1.rating)
-        expect(page).to have_content(review_1.user)
+        within "#review_#{review_1.id}" do
+          expect(page).to have_content(review_1.title)
+          expect(page).to have_content(review_1.text)
+          expect(page).to have_content(review_1.rating)
+          expect(page).to have_content(review_1.user)
+        end
       end
+
+      visit "/books/#{book_2.id}"
+
+      within "#book-info" do
+        expect(page).to have_content(book_2.title)
+        expect(page).to have_content("Author(s): #{book_2.authors.join(", ")}")
+        expect(page).to have_content("Pages: #{book_2.pages}")
+        expect(page).to have_content("Year of Publication: #{book_2.year}")
+        expect(page).to have_xpath("//img[@src='#{book_2.cover}']")
+      end
+
+      within "#reviews" do
+        within "#review_#{review_2.id}" do
+          expect(page).to have_content(review_2.title)
+          expect(page).to have_content(review_2.text)
+          expect(page).to have_content(review_2.rating)
+          expect(page).to have_content(review_2.user)
+        end
+        
+        within "#review_#{review_3.id}" do
+          expect(page).to have_content(review_3.title)
+          expect(page).to have_content(review_3.text)
+          expect(page).to have_content(review_3.rating)
+          expect(page).to have_content(review_3.user)
+        end
+      end
+
     end
   end
 end
