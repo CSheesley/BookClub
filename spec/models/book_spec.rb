@@ -15,7 +15,7 @@ RSpec.describe Book, type: :model do
   end
 
   describe 'Class Method' do
-    it "overrides the .authors method; returns a list of strings(names)" do
+    it "new .author_names method; returns a list of strings(names)" do
       author_1 = Author.create(name: "J.R.R Tolkein")
       author_2 = Author.create(name: "William Peterson")
       author_3 = Author.create(name: "Corey Sheesley")
@@ -25,8 +25,8 @@ RSpec.describe Book, type: :model do
       book_2.authors << author_3
       book_3 = author_2.books.create(title: "Art of Data", pages: 400, year: 2000, cover: "otherothermadeupurl.com")
 
-      expect(book_1.authors).to eq(["J.R.R Tolkein"])
-      expect(book_2.authors).to eq(["William Peterson", "Corey Sheesley"])
+      expect(book_1.author_names).to eq(["J.R.R Tolkein"])
+      expect(book_2.author_names).to eq(["William Peterson", "Corey Sheesley"])
     end
   end
 end
