@@ -22,5 +22,13 @@ RSpec.describe 'book partial render', type: :view do
     expect(response).to have_content("Year of Publication: #{book_1.year}")
     expect(response).to have_xpath("//img[@src='#{book_1.cover}']")
 
+    render book_2
+    
+    expect(response).to have_content(book_2.title)
+    expect(response).to have_content("Author(s): #{book_2.author_names.join(", ")}")
+    expect(response).to have_content("Pages: #{book_2.pages}")
+    expect(response).to have_content("Year of Publication: #{book_2.year}")
+    expect(response).to have_xpath("//img[@src='#{book_2.cover}']")
+
   end
 end
