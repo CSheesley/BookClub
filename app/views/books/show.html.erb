@@ -1,7 +1,7 @@
 <h1>Book Show Page</h1>
 
 <section id=book-info>
-<%= render "book_card", book: @book %>
+<%= render @book %>
 </section>
 <section id=reviews>
   <% @reviews.each do |review| %>
