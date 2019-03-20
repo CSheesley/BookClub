@@ -21,9 +21,13 @@ RSpec.describe 'author show page', type: :feature do
       review_3 = book_2.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
       review_4 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 5, user: "User_2")
 
-      visit "/authors/#{author_2.id}"
+      visit author_path(author_2)
 
-        expect(page).to have_content(author_2.books)
+        # expect(page).to have_content(author_2.books)
+
+        # expect(page).to have_xpath(//div[@id=book-card-#{book_2.id}])
+
+        # Every "Book card" will be in a <div> tag WHERE id="book-card-#{:id}"
 
       within "#author-info" do
         expect(page).to have_content(author.name)

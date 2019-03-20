@@ -6,7 +6,7 @@
 
 <section id="authors-books">
     <% @books.each do |book| %>
-    <% render :book_card, {book: book, authors: book.co_authors, type: "Author"}  %>
+    
 
   <div id=<%= "book-#{book.id}" %>>
       <h3><%= book.title %></h3>
