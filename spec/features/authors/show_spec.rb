@@ -31,12 +31,12 @@ RSpec.describe 'author show page', type: :feature do
       within "#books-#{book_2.id}" do
         expect(page).to have_content("Pages: #{book_2.pages}")
         expect(page).to have_content("Year of Publication: #{book_2.year}")
-        expect(page).to have_content("Co-Authors: #{book_2.co_authors}")
+        # expect(page).to have_content("Co-Authors: #{book_2.co_authors}")
       end
       within "#books-#{book_3.id}" do
         expect(page).to have_content("Pages: #{book_3.pages}")
         expect(page).to have_content("Year of Publication: #{book_3.year}")
-        expect(page).to have_content("Co-Authors: #{book_3.co_authors}")
+        # expect(page).to have_content("Co-Authors: #{book_3.co_authors}")
       end
     end
   end

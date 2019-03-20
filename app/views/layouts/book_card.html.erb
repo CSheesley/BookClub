@@ -1,0 +1,18 @@
+<%# ASSUME WE HAVE A BOOK ACTIVE RECORD OBJECT called @book
+Author info passed in (somehow)%>
+
+<!-- {book: @book, authors: @authors, type: @page} -->
+
+<div id = <%="book-card-#{@book.id}"%> >
+  <h3 id = book-title ><%= book.title %></h3>
+  <ul>
+    <li id = book-pages>Pages: <%= book.pages %></li>
+    <li id = book-year>Year of Publication: <%= book.year %></li>
+    <% if book.Authors.length > 0 %>
+      <li id = book-authors>
+        <%="With:" if @page == "Author" else "By:"%> <%= book.authors %></li>
+    <% end %>
+
+  </ul>
+
+</div>
