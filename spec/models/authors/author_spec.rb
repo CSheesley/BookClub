@@ -17,7 +17,7 @@ RSpec.describe Author, type: :model do
 
       author_list_1 = Author.authors_from_string(author_string_1)
       author_list_2 = Author.authors_from_string(author_string_2)
-
+      
       expect(author_list_1[0].name).to eq(author_string_1)
       expect(author_list_1.length).to eq(1)
 

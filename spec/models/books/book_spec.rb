@@ -44,8 +44,8 @@ RSpec.describe Book, type: :model do
     end
 
     it 'can prepulate a default cover image link if no image is provided' do
-      book_info_1 = ({"title"=>"The Davinci Code", "pages"=>"350", "year"=>"1995", "cover"=>"madeupurl.com"})
-      book_info_2 = ({"title"=>"Blank Book", "pages"=>"100", "year"=>"1980", "cover"=>""})
+      book_info_1 = ({title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
+      book_info_2 = ({title: "Blank Book", pages: 100, year: 1980, cover: ""})
 
       default_image = "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"
 
