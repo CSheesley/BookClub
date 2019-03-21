@@ -15,4 +15,13 @@ class Book < ApplicationRecord
   def co_authors(author)
     authors.where.not(id: author.id).pluck(:name)
   end
+
+  def self.new_from_form(book_info)
+    if book_info['cover'] == ""
+      book_info['cover'] = "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"
+    else
+      book_info['cover']
+    end
+    self.create(book_info)
+  end
 end
