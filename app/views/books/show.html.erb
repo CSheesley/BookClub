@@ -1,22 +1,11 @@
 <h1>Book Show Page</h1>
 
 <section id=book-info>
-  <ul>
-    <li><%= @book.title %><li>
-    <li>Author(s): <%= @book.author_names.join(", ") %><li>
-    <li>Pages: <%= @book.pages %><li>
-    <li>Year of Publication: <%= @book.year %><li>
-    <li><img src="<%= @book.cover %>"><li>
-  </ul>
+<%= render @book %>
 </section>
 <section id=reviews>
   <% @reviews.each do |review| %>
-  <ul id = <%="review-#{review.id}"%>>
-    <li><%= review.title %></li>
-    <li><%= review.text %></li>
-    <li><%= review.rating %></li>
-    <li><%= review.user %></li>
-  </ul>
+    <%= render review %>
   <%end%>
 
 </section>
