@@ -10,8 +10,9 @@ class BooksController < ApplicationController
 
   def create
     book_info = book_params
-    @author = Author.create(name: book_info.delete(:authors))
-    @book = @author.books.new(book_info)
+    @authors = Author.authors_from_string(book_info.delete(:authors))
+    @book = Book.new(book_info)
+    @book.authors = @authors
     @book.save
     redirect_to book_path(@book)
   end
