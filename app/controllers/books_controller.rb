@@ -20,7 +20,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    # binding.pry
     params.require(:book).permit(:title, :authors, :pages, :year, :cover)
   end
 end
