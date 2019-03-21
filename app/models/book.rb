@@ -15,4 +15,8 @@ class Book < ApplicationRecord
   def co_authors(author)
     authors.where.not(id: author.id).pluck(:name)
   end
+
+  def self.sort_pages(direction)
+    Book.order(pages: direction)
+  end
 end
