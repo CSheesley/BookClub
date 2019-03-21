@@ -21,9 +21,9 @@ RSpec.describe Author, type: :model do
       expect(author_list_1[0].name).to eq(author_string_1)
       expect(author_list_1.length).to eq(1)
 
-      expect(author_list_1[0].name).to eq("Dan Brown")
-      expect(author_list_1[1].name).to eq("Corey Sheesley")
-      expect(author_list_1.length).to eq(2)
+      expect(author_list_2[0].name).to eq("Dan Brown")
+      expect(author_list_2[1].name).to eq("Corey Sheesley")
+      expect(author_list_2.length).to eq(2)
     end
   end
 end
