@@ -16,7 +16,6 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :authors, :pages, :cover)
-<<<<<<< HEAD
   end
 
   def new
@@ -39,7 +38,6 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author_names, :pages, :year, :cover)
-=======
->>>>>>> master
   end
+
 end
