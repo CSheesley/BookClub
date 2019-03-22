@@ -23,4 +23,8 @@ class Review < ApplicationRecord
   def self.rating_sort(direction)
     order(rating: direction)
   end
+
+  def self.total_reviews
+    count(*)
+  end
 end
