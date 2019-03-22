@@ -67,7 +67,7 @@ RSpec.describe Book, type: :model do
       book_2 = Book.new_from_form(book_info_2)
       book_3 = Book.new_from_form(book_info_3)
       book_4 = Book.new_from_form(book_info_4)
-
+      
       expect(Book.count).to eq(2)
     end
   end
