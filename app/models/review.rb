@@ -9,4 +9,10 @@ class Review < ApplicationRecord
   def self.sorted_by_time(direction)
     order(created_at: direction)
   end
+
+  def self.most_reviews
+    group(:user).
+    order("count(user) DESC").
+    pluck(:user)
+  end
 end

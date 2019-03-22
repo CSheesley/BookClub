@@ -34,7 +34,7 @@ RSpec.describe Review, type: :model do
       expect(oldest).to eq([review_1,review_2,review_3,review_4])
       expect(newest).to eq([review_4,review_3,review_2,review_1])
     end
-    it '.most_reviews returns users names sorted by number of reviews created'
+    it '.most_reviews returns users names sorted by number of reviews created' do
 
       author_1 = Author.create(name: "J.R.R Tolkein")
       author_2 = Author.create(name: "William Peterson")
@@ -52,7 +52,7 @@ RSpec.describe Review, type: :model do
       review_5 = book_3.reviews.create(title: "Data Pro1" , text: "What a list!", rating: 5, user: "User_3")
       review_6 = book_3.reviews.create(title: "Data Pro2" , text: "What a list!", rating: 5, user: "User_1")
 
-      most_reviews = Reviews.most_reviews
+      most_reviews = Review.most_reviews
       expect(most_reviews).to eq(["User_1", "User_2","User_3"])
     end
   end
