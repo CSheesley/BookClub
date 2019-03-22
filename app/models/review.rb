@@ -19,4 +19,8 @@ class Review < ApplicationRecord
   def self.avg_rating
     average(:rating)
   end
+
+  def self.rating_sort(direction)
+    order(rating: direction)
+  end
 end

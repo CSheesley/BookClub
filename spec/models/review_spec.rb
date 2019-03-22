@@ -95,11 +95,11 @@ RSpec.describe Review, type: :model do
       review_5 = book_3.reviews.create(title: "Data Pro1" , text: "What a list!", rating: 1, user: "User_3")
 
 
-      top_reviews = Book.rating_sort(:desc)
-      bottom_reviews = Book.rating_sort(:asc)
+      top_reviews = Review.rating_sort(:desc)
+      bottom_reviews = Review.rating_sort(:asc)
 
       expect(top_reviews).to eq([review_1,review_2,review_3,review_4,review_5])
-      expect(top_reviews).to eq([review_5,review_4,review_3,review_2,review_1])
+      expect(bottom_reviews).to eq([review_5,review_4,review_3,review_2,review_1])
     end
   end
 end
