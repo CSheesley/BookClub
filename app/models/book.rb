@@ -16,7 +16,6 @@ class Book < ApplicationRecord
     authors.where.not(id: author.id).pluck(:name)
   end
 
-<<<<<<< HEAD
   def self.new_from_form(book_info)
     if book_info[:cover] == ""
       book_info[:cover] = "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"
@@ -25,8 +24,6 @@ class Book < ApplicationRecord
     create(book_info)
   end
 
-=======
->>>>>>> master
   def self.direction_hash
     {asc:"ASC", desc:"DESC"}
   end
