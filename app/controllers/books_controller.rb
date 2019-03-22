@@ -8,20 +8,6 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
-  def create
-    book = Book.create(book_params)
-  end
-
-  private
-
-  def book_params
-    params.require(:book).permit(:title, :authors, :pages, :cover)
-  end
-
-  def new
-    @book = Book.new
-  end
-
   def index
   end
 
@@ -39,5 +25,4 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author_names, :pages, :year, :cover)
   end
-
 end
