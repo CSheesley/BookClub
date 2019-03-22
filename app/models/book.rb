@@ -15,26 +15,26 @@ class Book < ApplicationRecord
   def co_authors(author)
     authors.where.not(id: author.id).pluck(:name)
   end
+
   def self.direction_hash
-    {asc:"ASC",desc:"DESC"}
+    {asc:"ASC", desc:"DESC"}
   end
 
   def self.sort_pages(direction)
-    Book.order(pages: direction)
+    order(pages: direction)
   end
 
   def self.sort_num_reviews(direction)
-
-    select("books.*, count(*) AS rev_count")
+    select("books.*")
     .joins(:reviews)
     .group(:id)
-    .order("rev_count #{direction_hash[direction]}")
+    .order("count(*) #{direction_hash[direction]}")
   end
 
   def self.sort_avg_reviews(direction)
-    select("books.*, avg(rating) AS avg_rating")
+    select("books.*")
     .joins(:reviews)
     .group(:id)
-    .order("avg_rating #{direction_hash[direction]}")
+    .order("avg(rating) #{direction_hash[direction]}")
   end
 end
