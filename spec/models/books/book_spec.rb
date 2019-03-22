@@ -60,8 +60,7 @@ RSpec.describe Book, type: :model do
       book_info_1 = ({title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
       book_info_2 = ({title: "Bad Example", pages: 1, year: 1980, cover: "madeupurl.com"})
       book_info_3 = ({title: "Worse Example", pages: 0, year: 1981, cover: "madeupurl.com"})
-      book_info_3 = ({title: "Worse Example", pages: -10, year: 1981, cover: "madeupurl.com"})
-      book_info_4 = ({title: "Worsest Example", pages: -10, year: 1981, cover: "madeupurl.com"})
+      book_info_4 = ({title: "Worsest Example", pages: -15, year: 1981, cover: "madeupurl.com"})
 
       book_1 = Book.new_from_form(book_info_1)
       book_2 = Book.new_from_form(book_info_2)
@@ -69,10 +68,10 @@ RSpec.describe Book, type: :model do
       book_4 = Book.new_from_form(book_info_4)
 
       expect(Book.count).to eq(2)
-      expect(Book.pluck(:title)).to eq([book_1.title, book_2.title])
+      expect(Book.all).to eq([book_1, book_2])
     end
 
-    it 'will will titleize a books title if not already formatted that way' do
+    it 'will titleize a books title if not already formatted that way' do
       book_info_1 = ({title: "the hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
 
       book_1 = Book.new_from_form(book_info_1)

@@ -1,6 +1,5 @@
 class Book < ApplicationRecord
   validates_presence_of :title
-  validates_presence_of :pages
   validates_presence_of :year
   validates_presence_of :cover
   validates :pages, presence: true, numericality: { greater_than: 0 }
@@ -20,10 +19,8 @@ class Book < ApplicationRecord
   def self.new_from_form(book_info)
     if book_info[:cover] == ""
       book_info[:cover] = "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"
-    else
-      book_info[:cover]
     end
       book_info[:title] = book_info[:title].titleize
-    self.create(book_info)
+    create(book_info)
   end
 end

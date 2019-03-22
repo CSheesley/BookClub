@@ -33,7 +33,7 @@ RSpec.describe 'new book workflow', type: :feature do
       fill_in 'book[authors]', with: book_authors
       fill_in 'book[year]', with: book_year
       fill_in 'book[cover]', with: book_cover
-
+      
       click_button 'Create Book'
 
       book = Book.last
