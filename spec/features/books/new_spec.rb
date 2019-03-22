@@ -6,7 +6,7 @@ RSpec.describe 'new book workflow', type: :feature do
 
       visit '/books'
 
-      click_button 'Add Book'
+      click_link 'Add Book'
 
       expect(current_path).to eq(new_book_path)
 

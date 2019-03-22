@@ -8,9 +8,11 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+  def index
+  end
+
   def create
     book_info = book_params
-    # binding.pry
     @authors = Author.authors_from_string(book_info.delete(:author_names))
     @book = Book.new(book_info)
     @book.authors = @authors
