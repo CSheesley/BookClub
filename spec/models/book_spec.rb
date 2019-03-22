@@ -42,42 +42,6 @@ RSpec.describe Book, type: :model do
       expect(book_1.co_authors(author_1)).to eq([])
       expect(book_2.co_authors(author_2)).to eq(["Corey Sheesley"])
     end
-
-    it 'can populate a default cover image link if no image is provided' do
-      book_info_1 = ({title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
-      book_info_2 = ({title: "Blank Book", pages: 100, year: 1980, cover: ""})
-
-      default_image = "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"
-
-      book_1 = Book.new_from_form(book_info_1)
-      book_2 = Book.new_from_form(book_info_2)
-
-      expect(book_1.cover).to eq("madeupurl.com")
-      expect(book_2.cover).to eq(default_image)
-    end
-
-    it 'will not create a book if the page count is less than 1 page' do
-      book_info_1 = ({title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
-      book_info_2 = ({title: "Bad Example", pages: 1, year: 1980, cover: "madeupurl.com"})
-      book_info_3 = ({title: "Worse Example", pages: 0, year: 1981, cover: "madeupurl.com"})
-      book_info_4 = ({title: "Worsest Example", pages: -15, year: 1981, cover: "madeupurl.com"})
-
-      book_1 = Book.new_from_form(book_info_1)
-      book_2 = Book.new_from_form(book_info_2)
-      book_3 = Book.new_from_form(book_info_3)
-      book_4 = Book.new_from_form(book_info_4)
-
-      expect(Book.count).to eq(2)
-      expect(Book.all).to eq([book_1, book_2])
-    end
-
-    it 'will titleize a books title if not already formatted that way' do
-      book_info_1 = ({title: "the hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
-
-      book_1 = Book.new_from_form(book_info_1)
-
-      expect(book_1.title).to eq("The Hobbit")
-    end
   end
 
   describe 'Class Method' do

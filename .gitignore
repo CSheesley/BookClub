@@ -18,3 +18,5 @@
 /coverage
 
 .byebug_history
+
+coverage/*

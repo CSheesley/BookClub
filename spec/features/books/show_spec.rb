@@ -19,47 +19,26 @@ RSpec.describe 'book show page', type: :feature do
 
       visit book_path(book_1)
 
+      expect(page).to have_xpath("//section[@id='book-info']")
       within "#book-info" do
-        expect(page).to have_content(book_1.title)
-        expect(page).to have_content("Author(s): #{book_1.author_names.join(", ")}")
-        expect(page).to have_content("Pages: #{book_1.pages}")
-        expect(page).to have_content("Year of Publication: #{book_1.year}")
-        expect(page).to have_xpath("//img[@src='#{book_1.cover}']")
+        expect(page).to have_xpath("//div[@id='book-card-#{book_1.id}']")
       end
-
+      expect(page).to have_xpath("//section[@id='reviews']")
       within "#reviews" do
-        within "#review-#{review_1.id}" do
-          expect(page).to have_content(review_1.title)
-          expect(page).to have_content(review_1.text)
-          expect(page).to have_content(review_1.rating)
-          expect(page).to have_content(review_1.user)
-        end
+        expect(page).to have_xpath("//div[@id='review-#{review_1.id}']")
       end
 
       visit book_path(book_2)
 
+      expect(page).to have_xpath("//section[@id='book-info']")
       within "#book-info" do
-        expect(page).to have_content(book_2.title)
-        expect(page).to have_content("Author(s): #{book_2.author_names.join(", ")}")
-        expect(page).to have_content("Pages: #{book_2.pages}")
-        expect(page).to have_content("Year of Publication: #{book_2.year}")
-        expect(page).to have_xpath("//img[@src='#{book_2.cover}']")
+        expect(page).to have_xpath("//div[@id='book-card-#{book_2.id}']")
       end
 
+      expect(page).to have_xpath("//section[@id='reviews']")
       within "#reviews" do
-        within "#review-#{review_2.id}" do
-          expect(page).to have_content(review_2.title)
-          expect(page).to have_content(review_2.text)
-          expect(page).to have_content(review_2.rating)
-          expect(page).to have_content(review_2.user)
-        end
-
-        within "#review-#{review_3.id}" do
-          expect(page).to have_content(review_3.title)
-          expect(page).to have_content(review_3.text)
-          expect(page).to have_content(review_3.rating)
-          expect(page).to have_content(review_3.user)
-        end
+        expect(page).to have_xpath("//div[@id='review-#{review_2.id}']")
+        expect(page).to have_xpath("//div[@id='review-#{review_3.id}']")
       end
 
     end
