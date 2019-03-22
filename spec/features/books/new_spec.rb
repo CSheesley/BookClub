@@ -30,13 +30,14 @@ RSpec.describe 'new book workflow', type: :feature do
 
       fill_in 'book[title]', with: book_title
       fill_in 'book[pages]', with: book_pages
-      fill_in 'book[authors]', with: book_authors
+      fill_in 'book[author_names]', with: book_authors
       fill_in 'book[year]', with: book_year
       fill_in 'book[cover]', with: book_cover
-      
+
       click_button 'Create Book'
 
       book = Book.last
+
       expect(current_path).to eq(book_path(book))
     end
 
@@ -53,7 +54,7 @@ RSpec.describe 'new book workflow', type: :feature do
 
       fill_in 'book[title]', with: book_title
       fill_in 'book[pages]', with: book_pages
-      fill_in 'book[authors]', with: book_authors
+      fill_in 'book[author_names]', with: book_authors
       fill_in 'book[year]', with: book_year
       fill_in 'book[cover]', with: book_cover
 

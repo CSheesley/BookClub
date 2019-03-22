@@ -10,7 +10,8 @@ class BooksController < ApplicationController
 
   def create
     book_info = book_params
-    @authors = Author.authors_from_string(book_info.delete(:authors))
+    # binding.pry
+    @authors = Author.authors_from_string(book_info.delete(:author_names))
     @book = Book.new(book_info)
     @book.authors = @authors
     @book.save
@@ -20,6 +21,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :authors, :pages, :year, :cover)
+    params.require(:book).permit(:title, :author_names, :pages, :year, :cover)
   end
 end
