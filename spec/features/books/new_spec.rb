@@ -18,15 +18,6 @@ RSpec.describe 'new book workflow', type: :feature do
   end
 
   context 'as a user filling out a new book form' do
-    it 'shows a form to fill out with the following fields: Title, Author(s), Pages, Cover' do
-
-      visit new_book_path
-
-      expect(page).to have_content("Title")
-      expect(page).to have_content("Author")
-      expect(page).to have_content("Pages")
-      expect(page).to have_content("Cover")
-    end
 
     it 'should accept input for a new book with one or more authors, and redirected to that show page after clicking Create Book' do
       book_title = "The Davinci Code"
