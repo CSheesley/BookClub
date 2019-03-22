@@ -73,7 +73,7 @@ RSpec.describe Review, type: :model do
       review_5 = book_3.reviews.create(title: "Data Pro1" , text: "What a list!", rating: 5, user: "User_3")
       review_6 = book_3.reviews.create(title: "Data Pro2" , text: "What a list!", rating: 5, user: "User_1")
 
-      review_avg = book_2.review.avg_rating
+      review_avg = book_2.reviews.avg_rating
       expect(review_avg).to eq(3.5)
     end
   end

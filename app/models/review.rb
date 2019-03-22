@@ -15,4 +15,8 @@ class Review < ApplicationRecord
     order("count(user) DESC").
     pluck(:user)
   end
+
+  def self.avg_rating
+    average(:rating)
+  end
 end
