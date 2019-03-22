@@ -3,7 +3,7 @@ class Book < ApplicationRecord
   validates_presence_of :pages
   validates_presence_of :year
   validates_presence_of :cover
-  validates :pages, numericality: { greater_than_or_equal_to: 1 }
+  validates :pages, presence: true, numericality: { greater_than: 0 }
 
   has_many :book_authors
   has_many :authors, through: :book_authors
