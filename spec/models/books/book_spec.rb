@@ -71,5 +71,13 @@ RSpec.describe Book, type: :model do
       expect(Book.count).to eq(2)
       expect(Book.pluck(:title)).to eq([book_1.title, book_2.title])
     end
+
+    it 'will will titleize a books title if not already formatted that way' do
+      book_info_1 = ({title: "the hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
+
+      book_1 = Book.new_from_form(book_info_1)
+
+      expect(book_1.title).to eq("The Hobbit")
+    end
   end
 end

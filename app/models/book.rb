@@ -23,6 +23,7 @@ class Book < ApplicationRecord
     else
       book_info[:cover]
     end
+      book_info[:title] = book_info[:title].titleize
     self.create(book_info)
   end
 end
