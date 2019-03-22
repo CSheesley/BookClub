@@ -25,6 +25,6 @@ class Review < ApplicationRecord
   end
 
   def self.total_reviews
-    count(*)
+    count
   end
 end
