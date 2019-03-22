@@ -19,4 +19,12 @@ class Book < ApplicationRecord
   def self.sort_pages(direction)
     Book.order(pages: direction)
   end
+
+  def self.sort_num_reviews(direction)
+
+    select("books.*, count(*) AS rev_count")
+    .joins(:reviews)
+    .group(:id)
+    .order("rev_count")
+  end
 end
