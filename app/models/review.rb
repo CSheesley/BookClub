@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   validates_presence_of :text
   validates_presence_of :rating
   validates_presence_of :user
+  validates_inclusion_of :rating, :in => 1..5
 
   belongs_to :book
 
