@@ -4,7 +4,7 @@ RSpec.describe 'new book workflow', type: :feature do
   context 'as a user visiting the book index page' do
     it 'shows have an add book link, which takes me to a form to fill out' do
 
-      visit '/books'
+      visit books_paths
 
       click_link 'Add Book'
 
