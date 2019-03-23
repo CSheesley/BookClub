@@ -21,7 +21,7 @@ RSpec.describe 'navbar', type: :feature do
 
     visit books_path
 
-      within '#navbar' do
+      within '#nav-bar' do
         click_link 'BookClub'
         expect(current_path).to eq('/')
       end
