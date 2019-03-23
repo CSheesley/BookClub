@@ -17,14 +17,12 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     review_4 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 5, user: "User_2")
 
     visit book_path(book_1)
-  
+
     click_link "User_1"
 
     expect(current_path).to eq(reviews_path)
-    expect(page).to have_content(review_1.user)
-    expect(page).to have_content(review_1.title)
-    expect(page).to have_content(review_2.title)
-    expect(page).not_to have_content(review_3.title)
-
+    expect(page).to have_selector('div', id: "review-#{review_1.id}")
+    expect(page).to have_selector('div', id: "review-#{review_2.id}")
+    expect(page).not_to have_selector('div', id: "review-#{review_3.id}")
   end
 end
