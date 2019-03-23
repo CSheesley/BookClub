@@ -2,16 +2,26 @@
   <ul>
     <li>
       <div id = title>
-        <%= review.title %>
+        <%=review.title %>
       </div>
     </li>
-    <li><%= review.text %></li>
-    <li><%= review.rating %></li>
-
     <li>
-      <a href = <%=reviews_path(user: review.user)%> >
-        <%= review.user %>
-      </a>
+      <div id = text>
+        <%= review.text %>
+      </div>
     </li>
+    <li>
+      <div id = rating>
+        <%= review.rating %>
+      </div>
+    </li>
+    <li>
+      <div id = user>
+        <a href = <%=reviews_path(user: review.user)%> >
+          <%= review.user %>
+        </a>
+      </div>
+    </li>
+
   </ul>
 </div>
