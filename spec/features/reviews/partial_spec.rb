@@ -23,14 +23,13 @@ RSpec.describe 'review partial render', type: :view do
     review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
 
     render review_1, show: true
-
-    expect(response).to have_xpath("//div[@id='review-#{review_1.id}']")
-    within "#review-#{review_1.id}" do
-      expect(response).to have_content(review_1.title)
-      expect(response).to have_content(review_1.text)
-      expect(response).to have_content(review_1.rating)
-      expect(response).to_not have_content(review_1.user)
-    end
+  
+    expect(rendered).to have_selector('div', id: "review-#{review_1.id}")
+    expect(rendered).to have_selector("div", id: "title", text: review_1.title)
+    expect(rendered).to have_selector("div", id: "text", text: review_1.text)
+    expect(rendered).to have_selector("div", id: "rating", text: review_1.rating)
+    expect(rendered).to_not have_selector("div", id: "user", text: review_1.user)
+    expect(rendered).to have_link(review_1.user, href:reviews_path(user: review_1.user))
 
   end
 end
