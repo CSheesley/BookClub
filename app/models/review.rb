@@ -28,4 +28,9 @@ class Review < ApplicationRecord
   def self.total_reviews
     count
   end
+
+  def self.new_from_form(review_info)
+    review_info[:user] = review_info[:user].titleize
+    create(review_info)
+  end
 end
