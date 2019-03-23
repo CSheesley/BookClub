@@ -3,6 +3,6 @@
     <li><%= review.title %></li>
     <li><%= review.text %></li>
     <li><%= review.rating %></li>
-    <li><a href = <%=reviews_path(name: review.user)%> > <%= review.user %></a></li>
+    <li><a href = <%=reviews_path(user: review.user)%> > <%= review.user %></a></li>
   </ul>
 </div>
