@@ -3,6 +3,7 @@ class Review < ApplicationRecord
   validates_presence_of :text
   validates_presence_of :rating
   validates_presence_of :user
+  validates_inclusion_of :rating, :in => 1..5
 
   belongs_to :book
 
@@ -26,5 +27,10 @@ class Review < ApplicationRecord
 
   def self.total_reviews
     count
+  end
+
+  def self.new_from_form(review_info)
+    review_info[:user] = review_info[:user].titleize
+    create(review_info)
   end
 end

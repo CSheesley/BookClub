@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :books, only: [:index, :show, :new, :create]
+  resources :books, only: [:index, :show, :new, :create] do
+    resources :reviews, only: [:new, :create]
+    end
+
   resources :authors, only: [:show]
-  resources :reviews, only: [:index, :new]
+  resources :reviews, only: [:index]
 end
