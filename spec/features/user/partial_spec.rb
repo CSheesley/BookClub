@@ -7,11 +7,7 @@ RSpec.describe 'user partial render', type: :view do
 
     render 'application/user', user: review_1.user
     expect(rendered).to have_link(review_1.user, href:reviews_path(user: review_1.user))
-    
-    expect(response).to have_xpath("//div[@id='user-#{review_1.user}']")
-    within "#user-#{review_1.user}" do
-      expect(response).to have_content(review_1.user)
-      expect(response).to have_xpath("//a[@href='#{reviews_path(user: review_1.user)}']")
-    end
+    expect(rendered).to have_selector('div', id: "user-#{review_1.user}")
+
   end
 end
