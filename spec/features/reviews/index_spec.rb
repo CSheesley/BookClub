@@ -32,7 +32,6 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
   it 'Shows books associated with the review' do
 
     visit reviews_path(user: "User_1")
-    # save_and_open_page
     expect(page).to have_selector('div', id: 'review-pair-1')
     within "#review-pair-1" do
       expect(page).to have_selector('div', id: "review-#{@review_1.id}")
@@ -40,7 +39,7 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     end
 
     expect(page).to have_selector('div', id: 'review-pair-2')
-    within "#review-pair-1" do
+    within "#review-pair-2" do
       expect(page).to have_selector('div', id: "review-#{@review_2.id}")
       expect(page).to have_selector('div', id: "book-card-#{@book_2.id}")
     end

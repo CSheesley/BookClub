@@ -1,3 +1,8 @@
 <%=@user_name%>
 
-<%= render @reviews, show:true %>
+<% @reviews.each_with_index do |review, index|%>
+  <div id=review-pair-<%=index+1%>>
+  <%= render review, show: true %>
+  <%= render review.book %>
+  </div>
+<%end%>
