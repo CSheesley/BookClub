@@ -32,7 +32,7 @@ RSpec.describe 'new review workflow', type: :feature do
 
       fill_in 'review[title]', with: review_title
       fill_in 'review[user]', with: review_user
-      fill_in 'review[rating]', with: review_rating
+      select(review_rating, :from => 'Rating')
       fill_in 'review[text]', with: review_text
 
       click_button 'Create Review'
@@ -42,6 +42,7 @@ RSpec.describe 'new review workflow', type: :feature do
       expect(current_path).to eq(book_path(book_1))
       expect(review.title).to eq(review_title)
       expect(review.text).to eq(review_text)
+      expect(review.rating).to eq(review_rating)
     end
   end
 end

@@ -11,7 +11,7 @@
 </p>
 <p>
   <%= f.label :rating %>
-  <%= f.number_field :rating %>
+  <%= f.select :rating, options_for_select(1..5)%>
 </p>
 <p>
   <%= f.label :text %>
