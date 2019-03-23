@@ -16,11 +16,8 @@
       </div>
     </li>
     <li>
-      <div id = user>
-        <a href = <%=reviews_path(user: review.user)%> >
-          <%= review.user %>
-        </a>
-      </div>
+      User:
+        <%= render 'application/user', user:review.user %>
     </li>
 
   </ul>
