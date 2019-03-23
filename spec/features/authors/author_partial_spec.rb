@@ -12,9 +12,29 @@ RSpec.describe 'author partial render', type: :view do
     within "#author-#{author_1.id}" do
       expect(response).to have_content(author_1.name)
     end
-    click_link author_1.name
 
+    click_link author_1.name
     expect(current_path).to eq(author_path(author_1))
+
+    render author_2
+
+    expect(response).to have_xpath("//div[@id='author-#{author_2.id}']")
+    within "#author-#{author_2.id}" do
+      expect(response).to have_content(author_2.name)
+    end
+
+    click_link author_2.name
+    expect(current_path).to eq(author_path(author_2))
+
+    render author_3
+
+    expect(response).to have_xpath("//div[@id='author-#{author_3.id}']")
+    within "#author-#{author_3.id}" do
+      expect(response).to have_content(author_3.name)
+    end
+
+    click_link author_3.name
+    expect(current_path).to eq(author_path(author_3))
   end
 
 end
