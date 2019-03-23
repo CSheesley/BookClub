@@ -1,11 +1,8 @@
 <h1>Book Show Page</h1>
 
 <section id=book-info>
-<%= render @book %>
+<%= render @book, author_type: :authors %>
 </section>
 <section id=reviews>
-  <% @reviews.each do |review| %>
-    <%= render review %>
-  <%end%>
-
+<%= render @reviews %>
 </section>
