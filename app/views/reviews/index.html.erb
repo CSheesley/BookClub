@@ -1,0 +1,9 @@
+<%=@user_name%>
+
+<% @reviews.each do |review|%>
+  <ul>
+    <li><%=review.title%> </li>
+    <li><%=review.rating%> </li>
+    <li><%=review.text%> </li>
+  </ul>
+<%end%>
