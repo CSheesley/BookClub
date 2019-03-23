@@ -39,6 +39,8 @@ RSpec.describe 'new book workflow', type: :feature do
       book = Book.last
 
       expect(current_path).to eq(book_path(book))
+      expect(book.title).to eq(book_title)
+      expect(book.pages).to eq(book_pages)
     end
 
     it 'adds a new book to an existing author, otherwise it adds a new author' do
