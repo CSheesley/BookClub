@@ -6,7 +6,8 @@ RSpec.describe 'user partial render', type: :view do
     review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
 
     render 'application/user', user: review_1.user
-
+    expect(rendered).to have_link(review_1.user, href:reviews_path(user: review_1.user))
+    
     expect(response).to have_xpath("//div[@id='user-#{review_1.user}']")
     within "#user-#{review_1.user}" do
       expect(response).to have_content(review_1.user)
