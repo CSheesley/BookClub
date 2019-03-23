@@ -3,4 +3,8 @@ class ReviewsController < ApplicationController
     @user_name = params[:name]
     @reviews = Review.where(user: @user_name)
   end
+
+  def new
+    @review = Review.new
+  end
 end
