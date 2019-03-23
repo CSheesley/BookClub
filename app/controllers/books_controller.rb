@@ -25,9 +25,4 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author_names, :pages, :year, :cover)
   end
-
-  # reviews_path({arg: "User Name"})
-  # def index
-  #   @reviews = Review.where(user: params[:arg])
-  # end
 end
