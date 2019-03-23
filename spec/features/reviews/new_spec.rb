@@ -23,12 +23,21 @@ RSpec.describe 'new review workflow', type: :feature do
     it 'should accept input for a new review of a book, including title, user, rating, text' do
       book_1 = Book.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
-      visit
+      visit new_book_review_path(book_1)
 
       review_title = "Best Ever"
       review_user = "User_1"
       review_rating = 5
       review_text = "Here is a long description of the review for the book"
+
+      fill_in 'review[title]', with: review_title
+      fill_in 'review[user]', with: review_user
+      fill_in 'review[rating]', with: review_rating
+      fill_in 'review[text]', with: review_text
+
+      click_button 'Create Review'
+      
+      expect(current_path).to eq(book_path(book_1))
     end
   end
 end
