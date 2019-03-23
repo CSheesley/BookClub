@@ -1,9 +1,13 @@
 <div id = <%="review-#{review.id}"%>>
   <ul>
-    <li><%= review.title %></li>
+    <li>
+      <div id = title>
+        <%= review.title %>
+      </div>
+    </li>
     <li><%= review.text %></li>
     <li><%= review.rating %></li>
-    
+
     <li>
       <a href = <%=reviews_path(user: review.user)%> >
         <%= review.user %>
