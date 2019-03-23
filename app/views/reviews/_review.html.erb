@@ -1,8 +1,25 @@
 <div id = <%="review-#{review.id}"%>>
   <ul>
-    <li><%= review.title %></li>
-    <li><%= review.text %></li>
-    <li><%= review.rating %></li>
-    <li><a href = <%=reviews_path(name: review.user)%> > <%= review.user %></a></li>
+    <li>
+      <div id = title>
+        <%=review.title %>
+      </div>
+    </li>
+    <li>
+      <div id = text>
+        <%= review.text %>
+      </div>
+    </li>
+    <li>
+      <div id = rating>
+        <%= review.rating %>
+      </div>
+    </li>
+    <li>
+      <% if defined?(show) == nil %>
+        <%= render 'application/user', user:review.user %>
+      <% end %>
+    </li>
+
   </ul>
 </div>
