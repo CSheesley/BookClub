@@ -10,9 +10,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @book = Book.find(params[:book_id])
+    @review = @book.reviews.create(review_params)
     redirect_to book_path(@book)
   end
 
+private
+
+  def review_params
+    params.require(:review).permit(:title, :user, :rating, :text)
+  end
 end
