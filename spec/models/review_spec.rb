@@ -135,10 +135,12 @@ RSpec.describe Review, type: :model do
 
       review_1 = Review.new_from_form(review_info_1)
 
-      expect(review_1.user).to eq("Rickey Reader")
+      expect(review_1.user).to eq("Ricky Reader")
     end
 
-    xit 'will not create a book if a rating is given outside of the valid range' do
+    it 'will not create a book if a rating is given outside of the valid range' do
+      book_info_1 = ({title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
+
       review_info_1 = ({title: "Really Bad Read",
                         user: "Bobby Badnews",
                         rating: -1,
@@ -152,12 +154,15 @@ RSpec.describe Review, type: :model do
                         rating: 3,
                         text: "You know, like if you have to read a book..."})
 
-      review_1 = Review.new_from_form(review_info_1)
-      review_2 = Review.new_from_form(review_info_1)
-      review_3 = Review.new_from_form(review_info_1)
+      book = Book.new_from_form(book_info_1)
+
+      review_1 = book.reviews.new_from_form(review_info_1)
+      review_2 = book.reviews.new_from_form(review_info_2)
+      review_3 = book.reviews.new_from_form(review_info_3)
 
       expect(Review.count).to eq(1)
-      expect(Review.all).to eq(review_3)
+
+      expect(Review.all).to eq([review_3])
     end
   end
 end
