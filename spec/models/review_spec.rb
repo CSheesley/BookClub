@@ -161,7 +161,6 @@ RSpec.describe Review, type: :model do
       review_3 = book.reviews.new_from_form(review_info_3)
 
       expect(Review.count).to eq(1)
-
       expect(Review.all).to eq([review_3])
     end
   end
