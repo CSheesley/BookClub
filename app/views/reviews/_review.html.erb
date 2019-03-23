@@ -16,8 +16,9 @@
       </div>
     </li>
     <li>
-      User:
+      <% if show != true %>
         <%= render 'application/user', user:review.user %>
+      <% end %>
     </li>
 
   </ul>
