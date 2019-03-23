@@ -6,7 +6,7 @@ RSpec.describe 'review partial render', type: :view do
     book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
     review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
 
-    render review_1, show: false
+    render review_1
     p rendered
     expect(rendered).to have_selector('div', id: "review-#{review_1.id}")
     expect(rendered).to have_selector("div", id: "title", text: review_1.title)

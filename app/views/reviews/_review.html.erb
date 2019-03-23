@@ -16,7 +16,7 @@
       </div>
     </li>
     <li>
-      <% if show != true %>
+      <% if defined?(show) == nil %>
         <%= render 'application/user', user:review.user %>
       <% end %>
     </li>
