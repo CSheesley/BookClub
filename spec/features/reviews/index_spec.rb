@@ -25,4 +25,23 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     expect(page).to have_selector('div', id: "review-#{review_2.id}")
     expect(page).not_to have_selector('div', id: "review-#{review_3.id}")
   end
+
+  it 'Shows books associated with the review' do
+
+    visit reviews_path(user: "User_1")
+
+    expect(page).to have_selector('div', id: 'review-pair-1')
+    within "#review-pair-1" do
+      expect(page).to have_selector('div', id: "review-#{review_1.id}")
+      expect(page).to have_selector('div', id: "book-card-#{book_1.id}")
+    end
+
+    expect(page).to have_selector('div', id: 'review-pair-2')
+    within "#review-pair-1" do
+      expect(page).to have_selector('div', id: "review-#{review_2.id}")
+      expect(page).to have_selector('div', id: "book-card-#{book_2.id}")
+    end
+
+    expect(page).not_to have_selector('div', id: 'review-pair-3')
+  end
 end
