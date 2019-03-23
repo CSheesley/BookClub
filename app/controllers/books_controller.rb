@@ -5,7 +5,6 @@ class BooksController < ApplicationController
   end
 
   def new
-    binding.pry
     @book = Book.new
   end
 
