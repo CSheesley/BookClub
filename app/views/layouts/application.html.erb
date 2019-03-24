@@ -8,6 +8,18 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
+  <nav id='nav-bar'>
+    <div id='logo'>
+      <img src="https://www.guildofstudents.com/asset/Organisation/6275/Book%20club%20logo.jpg?thumbnail_width=372&thumbnail_height=372&resize_type=CropToFit" width="30" height="30" class="d-inline-block align-top" alt="">
+    </div>
+    <div id='links'>
+      <%= link_to 'All Books', books_path %>
+    </div>
+    <div id='links'>
+      <%= link_to 'BookClub', root_path %>
+    </div>
+  </nav>
+
   <body>
     <%= yield %>
   </body>
