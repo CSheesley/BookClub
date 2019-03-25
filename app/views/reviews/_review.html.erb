@@ -1,25 +1,21 @@
 <div id = <%="review-#{review.id}"%>>
-  <ul>
-    <li>
       <div id = title>
         <%=review.title %>
       </div>
-    </li>
-    <li>
+
       <div id = text>
         <%= review.text %>
       </div>
-    </li>
-    <li>
+
       <div id = rating>
         <%= review.rating %>
       </div>
-    </li>
-    <li>
+
+      <div id = "created">
+        <%= review.created_at %>
+      </div>
       <% if defined?(show) == nil %>
         <%= render 'application/user', user:review.user %>
       <% end %>
-    </li>
 
-  </ul>
 </div>

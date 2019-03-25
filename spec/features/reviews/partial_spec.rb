@@ -11,7 +11,10 @@ RSpec.describe 'review partial render', type: :view do
     expect(rendered).to have_selector("div", id: "title", text: review_1.title)
     expect(rendered).to have_selector("div", id: "text", text: review_1.text)
     expect(rendered).to have_selector("div", id: "rating", text: review_1.rating)
+    expect(rendered).to have_selector("div", id: "created", text: review_1.created_at)
+
     expect(rendered).to have_selector("div", id: "user-#{review_1.user}", text: review_1.user)
+
   end
 
   it 'should not print the user name if it is on user show page, where show:true' do
@@ -25,6 +28,8 @@ RSpec.describe 'review partial render', type: :view do
     expect(rendered).to have_selector("div", id: "title", text: review_1.title)
     expect(rendered).to have_selector("div", id: "text", text: review_1.text)
     expect(rendered).to have_selector("div", id: "rating", text: review_1.rating)
+    expect(rendered).to have_selector("div", id: "created", text: review_1.created_at)
+
     expect(rendered).to_not have_selector("div", id: "user-#{review_1.user}", text: review_1.user)
 
   end

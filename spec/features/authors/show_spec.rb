@@ -20,7 +20,6 @@ RSpec.describe 'author show page', type: :feature do
 
       visit author_path(author_2)
 
-      save_and_open_page
       expect(page).to have_xpath("//section[@id='author']")
 
       within "#author" do
