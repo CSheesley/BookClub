@@ -20,6 +20,10 @@ class ReviewsController < ApplicationController
     redirect_to book_path(@book)
   end
 
+  def delete
+
+  end
+
 private
 
   def review_params

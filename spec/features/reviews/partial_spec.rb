@@ -31,7 +31,7 @@ RSpec.describe 'review partial render', type: :view do
     expect(rendered).to have_selector("div", id: "created", text: review_1.created_at)
 
     expect(rendered).to_not have_selector("div", id: "user-#{review_1.user}", text: review_1.user)
-    expect(rendered).to have_link(delete, method: :delete)
+
   end
 
   it 'should delete review if delete link is pressed' do
@@ -39,8 +39,10 @@ RSpec.describe 'review partial render', type: :view do
     book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
     review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
 
-    render review_1
 
-    expect(rendered).to have_selector('div', id: 'deletion', text:"delete")
+    render review_1
+    p rendered
+    expect(rendered).to have_selector('div', id: 'deletion', text:"Delete")
+    expect(rendered).to have_link("Delete", href: review_path(review_1))
   end
 end
