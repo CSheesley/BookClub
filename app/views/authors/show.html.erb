@@ -1,11 +1,9 @@
 <h1>Author Show Page</h1>
 
-<section id="author-info">
+<section id="author">
   <li><%= @author.name %><li>
 </section>
 
 <section id="authors-books">
-    <% @books.each do |book| %>
-      <%= render book %>
-    <%end%>
+  <%= render @books, author: @author  %>
 </section>

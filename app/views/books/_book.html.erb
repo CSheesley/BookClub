@@ -3,6 +3,14 @@
     <div id = book-pages>Pages: <%= book.pages %></div>
     <div id = book-year>Year of Publication: <%= book.year %></div>
     <div id = book-cover><img src = <%=book.cover%>></div>
-    <%= render book.authors %>
+    <div id = author-info>
+      <% if defined?(author)== nil %>
+      By:
+      <%= render book.authors %>
+      <%elsif book.co_authors(author) != []%>
+      With:
+      <%= render book.co_authors(author) %>
+      <%end%>
+    </div>
     <%= link_to 'New Review', new_book_review_path(book) %>
 </div>
