@@ -30,7 +30,7 @@ book_hashes.each do |hash|
 end
 
 review_hashes.each do |hash|
-  hash[:title] = hash.delete(:book_title)
+  hash[:title] = hash.delete(:review_title)
   hash[:text] = hash.delete(:review)
   book = Book.where(title: hash.delete(:book_title))[0]
   book.reviews.create(hash)
