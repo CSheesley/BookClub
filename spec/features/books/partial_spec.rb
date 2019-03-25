@@ -95,5 +95,13 @@ RSpec.describe 'book partial render', type: :view do
     expect(rendered).not_to have_link("#{book_1.title}", href:book_path(book_1))
   end
 
+  it 'should show the average rating and number of reviews next to each book' do
+    author_1 = Author.create(name: "J.R.R Tolkein")
+    book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
+    render book_1
+
+    expect(rendered).to have_selector('div', id:'book-stats', text: "Average Rating: #{@book_1.average_rating}")
+    expect(rendered).to have_selector('div', id:'books-stats', text: "Total Reviews: #{@book_1.total_reviews}")
+  end
 end
