@@ -18,4 +18,8 @@
         <%= render 'application/user', user:review.user %>
       <% end %>
 
+      <div id = 'deletion'>
+        <%= link_to "Delete", review, method: :delete %>
+      </div>
+
 </div>
