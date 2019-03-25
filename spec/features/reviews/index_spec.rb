@@ -79,6 +79,8 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
       click_link "Delete"
 
       expect(Review.all.count).to eq(3)
+      expect(current_path).to eq(reviews_path(user: "User_1"))
+      expect(page).not_to have_selector('div', id: "review-#{review_1.id}")
 
     end
   end
