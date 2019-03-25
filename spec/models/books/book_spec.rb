@@ -29,7 +29,7 @@ RSpec.describe Book, type: :model do
       expect(book_2.author_names).to eq(["William Peterson", "Corey Sheesley"])
     end
 
-    it "it can get a list of co-author names" do
+    it "it can get a list of co-author objects" do
       author_1 = Author.create(name: "J.R.R Tolkein")
       author_2 = Author.create(name: "William Peterson")
       author_3 = Author.create(name: "Corey Sheesley")
@@ -40,7 +40,7 @@ RSpec.describe Book, type: :model do
       book_3 = author_2.books.create(title: "Art of Data", pages: 400, year: 2000, cover: "otherothermadeupurl.com")
 
       expect(book_1.co_authors(author_1)).to eq([])
-      expect(book_2.co_authors(author_2)).to eq(["Corey Sheesley"])
+      expect(book_2.co_authors(author_2)).to eq([author_3])
     end
 
     it 'can populate a default cover image link if no image is provided' do
