@@ -78,46 +78,6 @@ RSpec.describe Book, type: :model do
 
       expect(book_1.title).to eq("The Hobbit")
     end
-
-    it '.sort_reviews(direction) sorts the reviews according to given direction' do
-      author_1 = Author.create(name: "J.R.R Tolkein")
-      book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
-
-      review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
-      review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
-      review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
-      review_4 = book_1.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_2")
-
-      top_reviews = book_1.sort_reviews(:desc)
-      bottom_reviews = book_1.sort_reviews(:asc)
-
-      expect(top_reviews).to eq([review_1, review_2, review_3, review_4])
-      expect(bottom_reviews).to eq([review_4, review_3, review_2, review_1])
-
-    end
-
-    it '.sort_reviews(direction, n) gives the top n reviews for a book' do
-      author_1 = Author.create(name: "J.R.R Tolkein")
-      book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
-
-      review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
-      review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
-      review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
-      review_4 = book_1.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_2")
-
-      top_review = book_1.sort_reviews(:desc,1)
-      bottom_review = book_1.sort_reviews(:asc,1)
-      top3_reviews = book_1.sort_reviews(:desc,3)
-      bottom3_reviews = book_1.sort_reviews(:asc,3)
-
-
-      expect(top_review).to eq([review_1])
-      expect(bottom_review).to eq([review_4])
-      expect(top3_reviews).to eq([review_1, review_2, review_3])
-      expect(bottom3_reviews).to eq([review_4, review_3, review_2])
-
-
-    end
   end
 
   describe 'Class Method' do
@@ -185,6 +145,5 @@ RSpec.describe Book, type: :model do
       expect(ascending_avg_reviews).to eq([book_3, book_2, book_1])
       expect(descending_avg_reviews).to eq([book_1, book_2, book_3])
     end
-
   end
 end
