@@ -3,7 +3,5 @@
 <%= link_to 'Add Book', new_book_path(argument_name: "my_arg") %>
 
 <section id ='all-books'>
-  <%= @books.each do |book| %>
-    <%= render book %>
-    <% end %>
+    <%= render @books %>
 </section>
