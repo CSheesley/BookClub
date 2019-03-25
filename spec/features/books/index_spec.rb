@@ -15,6 +15,20 @@ RSpec.describe "book index page", type: :feature do
         expect(page).to have_selector('div', id:"book-card-#{book_1.id}")
         expect(page).to have_selector('div', id:"book-card-#{book_2.id}")
       end
+
+      it 'should show links to sort books by (average rating, number of pages, and reviews)' do
+
+        visit books_path
+
+        within '#sorting' do
+          expect(page).should have_selector(:link_or_button, 'Best Rated')
+          expect(page).should have_selector(:link_or_button, 'Worst Rated')
+          expect(page).should have_selector(:link_or_button, 'Most Pages')
+          expect(page).should have_selector(:link_or_button, 'Fewest Pages')
+          expect(page).should have_selector(:link_or_button, 'Most Reviews')
+          expect(page).should have_selector(:link_or_button, 'Fewest Reviews')
+        end
+      end
     end
   end
 end
