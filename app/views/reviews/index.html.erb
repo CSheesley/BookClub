@@ -1,4 +1,6 @@
 <%=@user_name%>
+<%= link_to "Oldest First", reviews_path(user:@user_name)%>
+<%= link_to "Newest First", reviews_path(user:@user_name)%>
 
 <% @reviews.each_with_index do |review, index|%>
   <div id=review-pair-<%=index+1%>>
