@@ -13,7 +13,7 @@ class Book < ApplicationRecord
   end
 
   def co_authors(author)
-    authors.where.not(id: author.id).pluck(:name)
+    authors.where.not(id: author.id)
   end
 
   def self.new_from_form(book_info)
