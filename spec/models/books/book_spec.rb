@@ -145,5 +145,16 @@ RSpec.describe Book, type: :model do
       expect(ascending_avg_reviews).to eq([book_3, book_2, book_1])
       expect(descending_avg_reviews).to eq([book_1, book_2, book_3])
     end
+
+    it '.reviews(direction) sorts the reviews according to given direction' do
+
+    end
+
+    it '.top_review() gives the top review for a book' do
+
+    end
+
+    it '.top_review(n) gives the top n reviews for a book' do
+      
   end
 end
