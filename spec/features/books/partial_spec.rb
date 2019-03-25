@@ -76,4 +76,19 @@ RSpec.describe 'book partial render', type: :view do
     expect(rendered).to have_selector('div', id:"author-#{author_2.id}")
 
   end
+
+  it 'Should Give Link To Book show page by default' do
+    author_1 = Author.create(name: "J.R.R Tolkein")
+    book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+
+    render book_1
+    
+  end
+
+  it 'Should NOT give a link to the book if book_show_page == true' do
+    author_1 = Author.create(name: "J.R.R Tolkein")
+    book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+
+    render book_1, book_show_page: true
+  end
 end
