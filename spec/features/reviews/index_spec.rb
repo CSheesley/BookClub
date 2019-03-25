@@ -48,4 +48,11 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     expect(page).not_to have_selector('div', id: "book-card-#{@book_3.id}")
 
   end
+
+  it 'has links for sorting' do
+    visit reviews_path(user: "User_1")
+
+    click_link "Oldest First"
+    click_link "Newest First"
+  end
 end
