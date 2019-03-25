@@ -60,14 +60,27 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Best Rated'
+        # save_and_open_page
+        # binding.pry
+        divs = page.all('div')
+        divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
+        expect(divs[0]).to eq(@book_1.id.to_s)
+        expect(divs[1]).to eq(@book_2.id.to_s)
+        expect(divs[2]).to eq(@book_3.id.to_s)
         #best @book_1, @book_2, @book_3
 
         click_link'Worst Rated'
+        divs = page.all('div')
+        divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+
+        expect(divs[0]).to eq(@book_3.id.to_s)
+        expect(divs[1]).to eq(@book_2.id.to_s)
+        expect(divs[2]).to eq(@book_1.id.to_s)
         #worst @book_3, @book_2, @book_1
       end
 
-      it 'should sort the books based on number of pages - most and fewest' do
+      xit 'should sort the books based on number of pages - most and fewest' do
 
         visit books_path
 
@@ -75,23 +88,23 @@ RSpec.describe "book index page", type: :feature do
 
         #most @book_3, @book_1, @book_2
 
-        click_link'Least Pages'
+        click_link'Fewest Pages'
         #fewest @book_2, @book_1, @book_3
       end
 
-      it 'should sort the books based on number of reviews - most and fewest' do
+      xit 'should sort the books based on number of reviews - most and fewest' do
 
         visit books_path
 
         click_link'Most Reviews'
         #most @book_1, @book_2, @book_3
 
-        click_link'Least Reviews'
+        click_link'Fewest Reviews'
         #fewest @book_3, @book_2, @book_1
       end
-
     end
   end
+end
 end
 
     # xit 'shows the average rating next to each book title' do
