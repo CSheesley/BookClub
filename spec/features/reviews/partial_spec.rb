@@ -34,14 +34,13 @@ RSpec.describe 'review partial render', type: :view do
 
   end
 
-  it 'should delete review if delete link is pressed' do
+  it 'should delete review if delete link is there' do
     author_1 = Author.create(name: "J.R.R Tolkein")
     book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
     review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
 
-
     render review_1
-    p rendered
+    
     expect(rendered).to have_selector('div', id: 'deletion', text:"Delete")
     expect(rendered).to have_link("Delete", href: review_path(review_1))
   end
