@@ -41,6 +41,6 @@ RSpec.describe 'review partial render', type: :view do
 
     render review_1
 
-    expect(rendered).to have_selector('div', id: 'deletion')
+    expect(rendered).to have_selector('div', id: 'deletion', text:"delete")
   end
 end
