@@ -16,7 +16,7 @@ RSpec.describe 'book partial render', type: :view do
     expect(rendered).to have_xpath("//img[@src='#{book_1.cover}']")
     expect(rendered).to have_selector('div', id:"author-#{author_1.id}")
     expect(rendered).to have_selector('div', id:"author-info", text: "By:")
-    
+
   end
 
   it 'Should render the all book information of a book with two authors' do
@@ -62,6 +62,18 @@ RSpec.describe 'book partial render', type: :view do
   end
 
   it 'Should print ONLY the co-author name when specified' do
+    author_1 = Author.create(name: "J.R.R Tolkein")
+    author_2 = Author.create(name: "Corey Sheesley")
+
+    book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+    book_1.authors << author_2
+
+    render book_1, author: author_1
+    expect(rendered).not_to have_selector('div', id:'author-info', text: "By:")
+    expect(rendered).not_to have_selector('div', id:"author-#{author_1.id}")
+
+    expect(rendered).to have_selector('div', id:'author-info', text: "With:")
+    expect(rendered).to have_selector('div', id:"author-#{author_2.id}")
 
   end
 end
