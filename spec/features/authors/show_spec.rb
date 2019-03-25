@@ -19,9 +19,9 @@ RSpec.describe 'author show page', type: :feature do
       review_4 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 5, user: "User_2")
 
       visit author_path(author_2)
-      expect(page).to have_xpath("//section[@id='author-info']")
+      expect(page).to have_xpath("//section[@id='author']")
 
-      within "#author-info" do
+      within "#author" do
         expect(page).to have_content(author_2.name)
       end
 
