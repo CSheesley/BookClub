@@ -80,7 +80,6 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     end
     expect(Review.all.count).to eq(3)
     expect(page).not_to have_selector('div', id: "review-#{@review_1.id}")
-    save_and_open_page
     expect(page).to have_content("User_1")
   end
 
