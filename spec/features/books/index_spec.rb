@@ -53,6 +53,7 @@ RSpec.describe "book index page", type: :feature do
           expect(page).to have_link('Fewest Reviews')
         end
       end
+    end
 
     context 'when I select a sort option' do
       it 'should sort the books based on average ratings - best and worst' do
@@ -60,24 +61,20 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Best Rated'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_1.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_3.id.to_s)
-        #best @book_1, @book_2, @book_3
 
         click_link'Worst Rated'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_3.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_1.id.to_s)
-        #worst @book_3, @book_2, @book_1
       end
 
       it 'should sort the books based on number of pages - most and fewest' do
@@ -85,24 +82,20 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Most Pages'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_3.id.to_s)
         expect(divs[1]).to eq(@book_1.id.to_s)
         expect(divs[2]).to eq(@book_2.id.to_s)
-        #most @book_3, @book_1, @book_2
 
         click_link'Fewest Pages'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_2.id.to_s)
         expect(divs[1]).to eq(@book_1.id.to_s)
         expect(divs[2]).to eq(@book_3.id.to_s)
-        #fewest @book_2, @book_1, @book_3
       end
 
       it 'should sort the books based on number of reviews - most and fewest' do
@@ -110,29 +103,54 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Most Reviews'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_1.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_3.id.to_s)
-        #most @book_1, @book_2, @book_3
 
         click_link'Fewest Reviews'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_3.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_1.id.to_s)
-        #fewest @book_3, @book_2, @book_1
+      end
+    end
+
+    context 'when I visit the book index page' do
+      it 'should have book titles as links to that books own show page' do
+
+        visit books_path
+
+        within "#book-card-#{@book_1.id}" do
+          expect(page).to have_link("#{@book_1.title}")
+          click_link @book_1.title
+          expect(current_path).to eq(book_path(@book_1))
+        end
+
+        visit books_path
+
+        within "#book-card-#{@book_2.id}" do
+          expect(page).to have_link("#{@book_2.title}")
+          click_link @book_2.title
+          expect(current_path).to eq(book_path(@book_2))
+        end
+
+        visit books_path
+
+        within "#book-card-#{@book_3.id}" do
+          expect(page).to have_link("#{@book_3.title}")
+          click_link @book_3.title
+          expect(current_path).to eq(book_path(@book_3))
+        end
       end
     end
   end
 end
-end
+
 
     # xit 'shows the average rating next to each book title' do
     #   author_1 = Author.create(name: "J.R.R Tolkein")
