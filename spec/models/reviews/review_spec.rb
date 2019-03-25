@@ -55,6 +55,7 @@ RSpec.describe Review, type: :model do
       most_reviews = Review.most_reviews
       expect(most_reviews).to eq(["User_1", "User_2","User_3"])
     end
+
     it '.review_ag returns avg rating for a collection of reviews' do
 
       author_1 = Author.create(name: "J.R.R Tolkein")
@@ -119,7 +120,6 @@ RSpec.describe Review, type: :model do
       review_4 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_2")
       review_5 = book_3.reviews.create(title: "Data Pro1" , text: "What a list!", rating: 1, user: "User_3")
 
-
       all_reviews = Review.total_reviews
       book_1_reviews = book_1.reviews.total_reviews
 
@@ -127,5 +127,41 @@ RSpec.describe Review, type: :model do
       expect(book_1_reviews).to eq(1)
     end
 
+    it 'will titleize a user name upon creation if not already formatted correctly' do
+      review_info_1 = ({title: "This book was ok",
+                        user: "ricky reader",
+                        rating: 3,
+                        text: "You know, like if you have to read a book..."})
+
+      review_1 = Review.new_from_form(review_info_1)
+
+      expect(review_1.user).to eq("Ricky Reader")
+    end
+
+    it 'will not create a book if a rating is given outside of the valid range' do
+      book_info_1 = ({title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
+
+      review_info_1 = ({title: "Really Bad Read",
+                        user: "Bobby Badnews",
+                        rating: -1,
+                        text: "Extra bad text..."})
+      review_info_2 = ({title: "Extra Good",
+                        user: "Optimistic Oprah",
+                        rating: 6,
+                        text: "Extra good text..."})
+      review_info_3 = ({title: "This book was ok",
+                        user: "Ricky Reader",
+                        rating: 3,
+                        text: "You know, like if you have to read a book..."})
+
+      book = Book.new_from_form(book_info_1)
+
+      review_1 = book.reviews.new_from_form(review_info_1)
+      review_2 = book.reviews.new_from_form(review_info_2)
+      review_3 = book.reviews.new_from_form(review_info_3)
+
+      expect(Review.count).to eq(1)
+      expect(Review.all).to eq([review_3])
+    end
   end
 end
