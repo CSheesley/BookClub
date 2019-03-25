@@ -7,15 +7,14 @@ RSpec.describe 'book partial render', type: :view do
     book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
     render book_1
+    expect(rendered).to have_selector('div', id:"book-card-#{book_1.id}")
+    expect(rendered).to have_selector('div', id:"book-title", text:book_1.title)
+    expect(rendered).to have_selector('div', id:"book-pages", text:book_1.pages)
+    expect(rendered).to have_selector('div', id:"book-year", text:book_1.year)
+    expect(rendered).to have_selector('div', id:"book-cover")
+    expect(rendered).to have_xpath("//img[@src='#{book_1.cover}']")
+    expect(rendered).to have_selector('div', id:"author-#{author_1.id}")
 
-    expect(response).to have_xpath("//div[@id='book-card-#{book_1.id}']")
-    within "#book-card-#{book_1.id}" do
-      expect(response).to have_content(book_1.titlea)
-      expect(response).to have_content("Author(s): #{book_1.author_names.join(", ")}")
-      expect(response).to have_content("Pages: #{book_1.pages}")
-      expect(response).to have_content("Year of Publication: #{book_1.year}")
-      expect(response).to have_xpath("//img[@src='#{book_1.cover}']")
-    end
 
   end
 
