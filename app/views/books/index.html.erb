@@ -1,5 +1,18 @@
 <h1>Book Club</h1>
 
+<section id='sorting'>
+  <div id='rating-sort'>
+    <button type="button" href=books_path(sort: :sort_avg_reviews, direction: :desc)>Best Rated</button>
+    <button type="button">Worst Rated</button>
+  </div>
+  <div id='page-sort'>
+
+  </div>
+  <div id='review-sort'>
+
+  </div>
+</section>
+
 <%= link_to 'Add Book', new_book_path(argument_name: "my_arg") %>
 
 <section id ='all-books'>
