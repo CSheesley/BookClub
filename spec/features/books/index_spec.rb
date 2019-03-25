@@ -53,6 +53,7 @@ RSpec.describe "book index page", type: :feature do
           expect(page).to have_link('Fewest Reviews')
         end
       end
+    end
 
     context 'when I select a sort option' do
       it 'should sort the books based on average ratings - best and worst' do
@@ -60,24 +61,20 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Best Rated'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_1.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_3.id.to_s)
-        #best @book_1, @book_2, @book_3
 
         click_link'Worst Rated'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_3.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_1.id.to_s)
-        #worst @book_3, @book_2, @book_1
       end
 
       it 'should sort the books based on number of pages - most and fewest' do
@@ -85,24 +82,20 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Most Pages'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_3.id.to_s)
         expect(divs[1]).to eq(@book_1.id.to_s)
         expect(divs[2]).to eq(@book_2.id.to_s)
-        #most @book_3, @book_1, @book_2
 
         click_link'Fewest Pages'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_2.id.to_s)
         expect(divs[1]).to eq(@book_1.id.to_s)
         expect(divs[2]).to eq(@book_3.id.to_s)
-        #fewest @book_2, @book_1, @book_3
       end
 
       it 'should sort the books based on number of reviews - most and fewest' do
@@ -110,29 +103,54 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Most Reviews'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_1.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_3.id.to_s)
-        #most @book_1, @book_2, @book_3
 
         click_link'Fewest Reviews'
-
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
         expect(divs[0]).to eq(@book_3.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
         expect(divs[2]).to eq(@book_1.id.to_s)
-        #fewest @book_3, @book_2, @book_1
+      end
+    end
+
+    context 'when I visit the book index page' do
+      it 'should have book titles as links to that books own show page' do
+
+        visit books_path
+
+        within "#book-card-#{@book_1.id}" do
+          expect(page).to have_link("#{@book_1.title}")
+          click_link @book_1.title
+          expect(current_path).to eq(book_path(@book_1))
+        end
+
+        visit books_path
+
+        within "#book-card-#{@book_2.id}" do
+          expect(page).to have_link("#{@book_2.title}")
+          click_link @book_2.title
+          expect(current_path).to eq(book_path(@book_2))
+        end
+
+        visit books_path
+
+        within "#book-card-#{@book_3.id}" do
+          expect(page).to have_link("#{@book_3.title}")
+          click_link @book_3.title
+          expect(current_path).to eq(book_path(@book_3))
+        end
       end
     end
   end
 end
-end
+
 
     # xit 'shows the average rating next to each book title' do
     #   author_1 = Author.create(name: "J.R.R Tolkein")
@@ -159,34 +177,6 @@ end
     #   end
     # end
     #
-    # xit 'shows one sorting link each for average rating, pages, reviews - ascending and descending' do
-    #   author_1 = Author.create(name: "J.R.R Tolkein")
-    #   author_2 = Author.create(name: "William Peterson")
-    #   author_3 = Author.create(name: "Corey Sheesley")
-    #
-    #   author_1.books.create(title: "The Hobbit", pages: 310, year: 1937, cover: 'http://madeupurl.com')
-    #   author_2.books.create(title: "Best Website Ever", pages: 100, year: 2018, cover: 'http://othermadeupurl.com')
-    #   author_3.books.create(title: "Best Website Ever", pages: 100, year: 2018, cover: 'http://othermadeupurl.com')
-    #
-    #   #best way to add reviews?
-    #   book_1 = author_1.books.first
-    #   book_2 = author_2.books.first
-    #
-    #   book_1.reviews.create(rating: 4, description: "Instant Classic.")
-    #   book_1.reviews.create(rating: 5, description: "What an Adventure.")
-    #   book_2.reviews.create(rating: 5, description: "A book by which all others are measured.")
-    #
-    #   visit '/books'
-    #
-    #   within "#sorting" do
-    #     expect(page).to have_content("Average Rating: Ascending")
-    #     expect(page).to have_content("Average Rating: Descending")
-    #     expect(page).to have_content("Number of Pages: Ascending")
-    #     expect(page).to have_content("Number of Pages: Descending")
-    #     expect(page).to have_content("Number of Reviews: Ascending")
-    #     expect(page).to have_content("Number of Reviews: Descending")
-    #   end
-    # end
     #
     # xit 'shows the three best and three worst books by review ranking (book title and rating score), and three users with the most reviews (user name and review count)' do
     #   author_1 = Author.create(name: "J.R.R Tolkein")
@@ -207,12 +197,5 @@ end
     #
     #   visit '/books'
     #
-    #   within "#sorting" do
-    #     expect(page).to have_content("Average Rating: Ascending")
-    #     expect(page).to have_content("Average Rating: Descending")
-    #     expect(page).to have_content("Number of Pages: Ascending")
-    #     expect(page).to have_content("Number of Pages: Descending")
-    #     expect(page).to have_content("Number of Reviews: Ascending")
-    #     expect(page).to have_content("Number of Reviews: Descending")
-    #   end
+
     # end

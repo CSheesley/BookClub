@@ -40,7 +40,13 @@ RSpec.describe 'book show page', type: :feature do
         expect(page).to have_xpath("//div[@id='review-#{review_2.id}']")
         expect(page).to have_xpath("//div[@id='review-#{review_3.id}']")
       end
+    end
+    
+    it 'should not have the book title contain a link to the show page' do
+      author_1 = Author.create(name: "J.R.R Tolkein")
+      book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
+      expect(page).not_to have_link("#{book_1.title}")
     end
   end
 end

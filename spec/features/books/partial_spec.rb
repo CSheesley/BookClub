@@ -82,7 +82,8 @@ RSpec.describe 'book partial render', type: :view do
     book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
     render book_1
-    
+
+    expect(rendered).to have_link("#{book_1.title}", href:book_path(book_1))
   end
 
   it 'Should NOT give a link to the book if book_show_page == true' do
@@ -90,5 +91,9 @@ RSpec.describe 'book partial render', type: :view do
     book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
     render book_1, book_show_page: true
+
+    expect(rendered).not_to have_link("#{book_1.title}", href:book_path(book_1))
   end
+
+
 end

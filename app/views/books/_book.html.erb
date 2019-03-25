@@ -1,5 +1,11 @@
 <div id = <%="book-card-#{book.id}"%> >
-  <div id = book-title ><%= book.title %></div>
+  <div id = book-title >
+    <% if defined?(book_show_page)== nil %>
+    <%= link_to book.title, book_path(book.id) %>
+    <% else %>
+    <%= book.title %>
+    <% end %>
+  </div>
     <div id = book-pages>Pages: <%= book.pages %></div>
     <div id = book-year>Year of Publication: <%= book.year %></div>
     <div id = book-cover><img src = <%=book.cover%>></div>
