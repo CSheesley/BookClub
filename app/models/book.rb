@@ -43,6 +43,6 @@ class Book < ApplicationRecord
     select("books.*")
     .joins(:reviews)
     .group(:id)
-    .order("avg(rating) #{direction_hash[direction]}")
+    .order("avg(reviews.rating) #{direction_hash[direction]}")
   end
 end

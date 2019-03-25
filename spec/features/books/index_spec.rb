@@ -60,10 +60,10 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Best Rated'
-        # save_and_open_page
-        # binding.pry
+        save_and_open_page
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+        # binding.pry
 
         expect(divs[0]).to eq(@book_1.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
@@ -80,7 +80,7 @@ RSpec.describe "book index page", type: :feature do
         #worst @book_3, @book_2, @book_1
       end
 
-      xit 'should sort the books based on number of pages - most and fewest' do
+      it 'should sort the books based on number of pages - most and fewest' do
 
         visit books_path
 

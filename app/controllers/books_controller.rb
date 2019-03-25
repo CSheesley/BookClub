@@ -9,7 +9,13 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    # binding.pry
+    if params.include?("sort")
+      binding.pry
+      @books = Book.send params[:sort], params[:direction].to_sym
+    else
+      @books = Book.all
+    end
   end
 
   def create
