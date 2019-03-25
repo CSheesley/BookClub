@@ -78,6 +78,8 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     within '#review-pair-1' do
       click_link "Delete"
 
+      expect(Review.all.count).to eq(3)
+
     end
   end
 
