@@ -107,13 +107,14 @@ RSpec.describe Book, type: :model do
 
       top_review = book_1.sort_reviews(:desc,1)
       bottom_review = book_1.sort_reviews(:asc,1)
-      top3_review = book_1.sort_reviews(:desc,1)
-      bottom3_review = book_1.sort_reviews(:asc,1)
+      top3_reviews = book_1.sort_reviews(:desc,3)
+      bottom3_reviews = book_1.sort_reviews(:asc,3)
+
 
       expect(top_review).to eq([review_1])
-      expect(top_review).to eq([review_4])
-      expect(top_reviews).to eq([review_1, review_2, review_3])
-      expect(bottom_reviews).to eq([review_4, review_3, review_2])
+      expect(bottom_review).to eq([review_4])
+      expect(top3_reviews).to eq([review_1, review_2, review_3])
+      expect(bottom3_reviews).to eq([review_4, review_3, review_2])
 
 
     end
