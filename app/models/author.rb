@@ -7,6 +7,7 @@ class Author < ApplicationRecord
   def self.authors_from_string(author_string)
     string_list = author_string.split(",")
     string_list.map do |string|
+      
       self.find_or_create_by(name: string.strip.titleize)
     end
   end
