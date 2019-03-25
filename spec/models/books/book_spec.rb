@@ -79,12 +79,26 @@ RSpec.describe Book, type: :model do
       expect(book_1.title).to eq("The Hobbit")
     end
 
+     it '.average_rating will calculate the average rating of a book, .total_reviews will return total mnumber of reviews' do
+      author_1 = Author.create(name: "J.R.R Tolkein")
+      book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+
+      review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
+      review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
+    
+      review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 5, user: "User_2")
+
+      expect(book_1.average_rating.round(2)).to eq(4.67)
+      expect(book_1.total_reviews).to eq(3)
+    end
+
     it '.sort_reviews(direction) sorts the reviews according to given direction' do
       author_1 = Author.create(name: "J.R.R Tolkein")
       book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
 
       review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
       review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
+  
       review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
       review_4 = book_1.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_2")
 
@@ -116,8 +130,8 @@ RSpec.describe Book, type: :model do
       expect(top3_reviews).to eq([review_1, review_2, review_3])
       expect(bottom3_reviews).to eq([review_4, review_3, review_2])
 
-
     end
+
   end
 
   describe 'Class Method' do

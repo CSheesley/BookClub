@@ -53,4 +53,12 @@ class Book < ApplicationRecord
     .group(:id)
     .order("avg(reviews.rating) #{direction_hash[direction]}")
   end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
+  def total_reviews
+    reviews.count
+  end
 end
