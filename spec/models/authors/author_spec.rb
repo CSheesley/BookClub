@@ -32,5 +32,14 @@ RSpec.describe Author, type: :model do
       expect(author_list_2[1].name).to eq("Corey Sheesley")
       expect(author_list_2.length).to eq(2)
     end
+
+    it '.authors_from_string does not try to create an author if name is blank after comma' do
+      author_string = "Dan Brown,"
+
+      author_list = Author.authors_from_string(author_string)
+
+      expect(author_list[0].name).to eq("Dan Brown")
+
+    end
   end
 end
