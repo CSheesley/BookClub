@@ -48,7 +48,6 @@ RSpec.describe 'author show page', type: :feature do
       review_3 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 5, user: "User_2")
       visit author_path(author_1)
 
-      save_and_open_page
       expect(page).to have_selector('div', id:'book-pair-1')
       within "#book-pair-1" do
         expect(page).not_to have_selector('div', id: /review-/)
