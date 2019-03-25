@@ -16,14 +16,6 @@ class Book < ApplicationRecord
     authors.where.not(id: author.id)
   end
 
-  def sort_reviews(direction, number=nil)
-    if number == nil
-      reviews.order(rating: direction)
-    else
-      reviews.order(rating: direction).limit(number)
-    end
-  end
-
   def self.new_from_form(book_info)
     if book_info[:cover] == ""
       book_info[:cover] = "https://smartmobilestudio.com/wp-content/uploads/2012/06/leather-book-preview.png"

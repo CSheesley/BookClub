@@ -5,10 +5,5 @@
 </section>
 
 <section id="authors-books">
-  <% @books.each_with_index do |book, index| %>
-  <div id=<%="book-pair-#{index+1}"%>>
-    <%= render book, author: @author  %>
-    <%= render book.sort_reviews(:desc, 1) %>
-  </div>
-  <% end %>
+  <%= render @books, author: @author  %>
 </section>
