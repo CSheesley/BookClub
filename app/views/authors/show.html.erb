@@ -5,7 +5,5 @@
 </section>
 
 <section id="authors-books">
-    <% @books.each do |book| %>
-      <%= render book %>
-    <%end%>
+  <%= render @books, author: @author  %>
 </section>

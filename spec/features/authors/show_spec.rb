@@ -32,7 +32,6 @@ RSpec.describe 'author show page', type: :feature do
 
       expect(page).not_to have_selector("div", id:"author-#{author_2.id}")
 
-
     end
   end
 end
