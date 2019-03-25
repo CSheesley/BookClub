@@ -2,14 +2,16 @@
 
 <section id='sorting'>
   <div id='rating-sort'>
-    <button type="button" href=books_path(sort: :sort_avg_reviews, direction: :desc)>Best Rated</button>
-    <button type="button">Worst Rated</button>
+    <%= link_to 'Best Rated', books_path(sort: :sort_avg_reviews, direction: :desc) %>
+    <%= link_to 'Worst Rated', books_path(sort: :sort_avg_reviews, direction: :asc) %>
   </div>
   <div id='page-sort'>
-
+    <%= link_to 'Most Pages', books_path(sort: :sort_pages, direction: :desc) %>
+    <%= link_to 'Fewest Pages', books_path(sort: :sort_pages, direction: :asc) %>
   </div>
   <div id='review-sort'>
-
+    <%= link_to 'Most Reviews', books_path(sort: :sort_num_reviews, direction: :desc) %>
+    <%= link_to 'Fewest Reviews', books_path(sort: :sort_num_reviews, direction: :asc) %>
   </div>
 </section>
 

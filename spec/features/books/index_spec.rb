@@ -19,14 +19,18 @@ RSpec.describe "book index page", type: :feature do
       it 'should show links to sort books by (average rating, number of pages, and reviews)' do
 
         visit books_path
-        # save_and_open_page
+        save_and_open_page
         within '#rating-sort' do
-          expect(page).should have_button('Best Rated')
-          expect(page).should have_selector(:link_or_button, 'Worst Rated')
-          # expect(page).should have_selector(:link_or_button, 'Most Pages')
-          # expect(page).should have_selector(:link_or_button, 'Fewest Pages')
-          # expect(page).should have_selector(:link_or_button, 'Most Reviews')
-          # expect(page).should have_selector(:link_or_button, 'Fewest Reviews')
+          expect(page).to have_link('Best Rated')
+          expect(page).to have_link('Worst Rated')
+        end
+        within '#page-sort' do
+          expect(page).to have_link('Most Pages')
+          expect(page).to have_link('Fewest Pages')
+        end
+        within '#review-sort' do
+          expect(page).to have_link('Most Reviews')
+          expect(page).to have_link('Fewest Reviews')
         end
       end
     end
