@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     redirect_to book_path(@book)
   end
 
-  def delete
+  def destroy
 
   end
 
