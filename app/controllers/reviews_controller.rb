@@ -1,7 +1,13 @@
 class ReviewsController < ApplicationController
   def index
+    # binding.pry
     @user_name = params[:user]
-    @reviews = Review.where(user: @user_name)
+    direction = params[:direction]
+    if direction == nil
+      @reviews = Review.where(user: @user_name)
+    else
+      @reviews = Review.where(user:@user_name).sorted_by_time(direction.to_sym)
+    end
   end
 
   def new

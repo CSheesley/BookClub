@@ -61,13 +61,16 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
 
     expect(divs[0]).to eq(@review_1.id.to_s)
     expect(divs[1]).to eq(@review_2.id.to_s)
+
     click_link "Newest First"
 
     divs = page.all('div')
-    divs = divs.select{ |div| div[:id].split("-")[0] == 'review'}.map{|div| div[:id].split("-")[1]}
+    divs = divs.select do |div|
+      (div[:id].split("-")[0] == 'review') & (div[:id].split("-").length == 2)
+    end.map{|div| div[:id].split("-")[1]}
 
-    expect(divs[1]).to eq(@review_2.id.to_s)
-    expect(divs[0]).to eq(@review_1.id.to_s)
+    expect(divs[0]).to eq(@review_2.id.to_s)
+    expect(divs[1]).to eq(@review_1.id.to_s)
   end
 
 end
