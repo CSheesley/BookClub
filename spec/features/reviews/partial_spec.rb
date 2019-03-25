@@ -12,7 +12,7 @@ RSpec.describe 'review partial render', type: :view do
     expect(rendered).to have_selector("div", id: "text", text: review_1.text)
     expect(rendered).to have_selector("div", id: "rating", text: review_1.rating)
     expect(rendered).to have_selector("div", id: "created", text: review_1.created_at)
-    
+
     expect(rendered).to have_selector("div", id: "user-#{review_1.user}", text: review_1.user)
 
   end
