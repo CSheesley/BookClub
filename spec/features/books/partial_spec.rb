@@ -101,7 +101,7 @@ RSpec.describe 'book partial render', type: :view do
 
     render book_1
 
-    expect(rendered).to have_selector('div', id:'book-stats', text: "Average Rating: #{@book_1.average_rating}")
-    expect(rendered).to have_selector('div', id:'books-stats', text: "Total Reviews: #{@book_1.total_reviews}")
+    expect(rendered).to have_selector('div', id:'book-stats', text: "Average Rating: #{book_1.average_rating}")
+    expect(rendered).to have_selector('div', id:'book-stats', text: "Total Reviews: #{book_1.total_reviews}")
   end
 end

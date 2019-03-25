@@ -89,7 +89,7 @@ RSpec.describe Book, type: :model do
 
       # binding.pry
 
-      expect(book_1.average_rating).to eq(4.67)
+      expect(book_1.average_rating.round(2)).to eq(4.67)
       expect(book_1.total_reviews).to eq(3)
     end
 
