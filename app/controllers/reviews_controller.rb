@@ -1,6 +1,5 @@
 class ReviewsController < ApplicationController
   def index
-    # binding.pry
     @user_name = params[:user]
     direction = params[:direction]
     if direction == nil
