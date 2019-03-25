@@ -3,6 +3,9 @@
     <div id = book-pages>Pages: <%= book.pages %></div>
     <div id = book-year>Year of Publication: <%= book.year %></div>
     <div id = book-cover><img src = <%=book.cover%>></div>
-    <%= render book.authors %>
+    <div id = author-info>
+      By:
+      <%= render book.authors %>
+    </div>
     <%= link_to 'New Review', new_book_review_path(book) %>
 </div>
