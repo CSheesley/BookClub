@@ -18,5 +18,9 @@
       <%= render book.co_authors(author) %>
       <%end%>
     </div>
+      <div id = book-stats>
+        Average Rating: <%= book.average_rating %>
+        Total Reviews: <%= book.total_reviews %>
+      </div>
     <%= link_to 'New Review', new_book_review_path(book) %>
 </div>
