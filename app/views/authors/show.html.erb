@@ -5,5 +5,9 @@
 </section>
 
 <section id="authors-books">
-  <%= render @books, author: @author  %>
+  <% @books.each_with_index do |book, index| %>
+  <div id=<%="book-pair#{index+1}"%>
+    <%= render book, author: @author  %>
+    <%= render book.top_review %>
+  <% end %>
 </section>
