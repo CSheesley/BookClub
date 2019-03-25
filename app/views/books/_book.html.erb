@@ -1,10 +1,8 @@
 <div id = <%="book-card-#{book.id}"%> >
-  <h3 id = book-title ><%= book.title %></h3>
-  <ul>
-    <li id = book-pages>Pages: <%= book.pages %></li>
-    <li id = book-year>Year of Publication: <%= book.year %></li>
-    <li id = book-cover><img src = <%=book.cover%>></li>
-    <li>Author(s): <%= book.author_names.join(", ") %></li>
+  <div id = book-title ><%= book.title %></div>
+    <div id = book-pages>Pages: <%= book.pages %></div>
+    <div id = book-year>Year of Publication: <%= book.year %></div>
+    <div id = book-cover><img src = <%=book.cover%>></div>
+    <%= render book.authors %>
     <%= link_to 'New Review', new_book_review_path(book) %>
-  </ul>
 </div>
