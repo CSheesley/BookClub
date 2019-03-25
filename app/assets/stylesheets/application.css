@@ -4,6 +4,13 @@
   height: 75px;
 }
 
+#sorting {
+  display: flex;
+  justify-content: space-around;
+  height: 50px;
+  background: gray;
+}
+
 #logo {
   height: 100px;
   width: 100px;
