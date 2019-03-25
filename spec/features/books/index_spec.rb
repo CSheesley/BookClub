@@ -60,10 +60,9 @@ RSpec.describe "book index page", type: :feature do
         visit books_path
 
         click_link'Best Rated'
-        save_and_open_page
+
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
-        # binding.pry
 
         expect(divs[0]).to eq(@book_1.id.to_s)
         expect(divs[1]).to eq(@book_2.id.to_s)
@@ -71,6 +70,7 @@ RSpec.describe "book index page", type: :feature do
         #best @book_1, @book_2, @book_3
 
         click_link'Worst Rated'
+
         divs = page.all('div')
         divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
 
@@ -86,20 +86,47 @@ RSpec.describe "book index page", type: :feature do
 
         click_link'Most Pages'
 
+        divs = page.all('div')
+        divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+
+        expect(divs[0]).to eq(@book_3.id.to_s)
+        expect(divs[1]).to eq(@book_1.id.to_s)
+        expect(divs[2]).to eq(@book_2.id.to_s)
         #most @book_3, @book_1, @book_2
 
         click_link'Fewest Pages'
+
+        divs = page.all('div')
+        divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+
+        expect(divs[0]).to eq(@book_2.id.to_s)
+        expect(divs[1]).to eq(@book_1.id.to_s)
+        expect(divs[2]).to eq(@book_3.id.to_s)
         #fewest @book_2, @book_1, @book_3
       end
 
-      xit 'should sort the books based on number of reviews - most and fewest' do
+      it 'should sort the books based on number of reviews - most and fewest' do
 
         visit books_path
 
         click_link'Most Reviews'
+
+        divs = page.all('div')
+        divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+
+        expect(divs[0]).to eq(@book_1.id.to_s)
+        expect(divs[1]).to eq(@book_2.id.to_s)
+        expect(divs[2]).to eq(@book_3.id.to_s)
         #most @book_1, @book_2, @book_3
 
         click_link'Fewest Reviews'
+
+        divs = page.all('div')
+        divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+
+        expect(divs[0]).to eq(@book_3.id.to_s)
+        expect(divs[1]).to eq(@book_2.id.to_s)
+        expect(divs[2]).to eq(@book_1.id.to_s)
         #fewest @book_3, @book_2, @book_1
       end
     end
