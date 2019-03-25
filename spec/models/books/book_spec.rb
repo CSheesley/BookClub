@@ -78,6 +78,29 @@ RSpec.describe Book, type: :model do
 
       expect(book_1.title).to eq("The Hobbit")
     end
+
+    it '.average_rating will calculate the average rating of a book' do
+      author_1 = Author.create(name: "J.R.R Tolkein")
+      book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+
+      review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
+      review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
+      review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 5, user: "User_2")
+
+      # binding.pry
+
+      expect(book_1.average_rating).to eq(4.67)
+      expect(book_1.total_reviews).to eq(3)
+    end
+
+    it '.total_reviews will calculate the total number of revies for a book' do
+      # book_info_1 = ({title: "the hobbit", pages: 200, year: 1999, cover: "madeupurl.com"})
+      #
+      # book_1 = Book.new_from_form(book_info_1)
+      #
+      # expect(book_1.title).to eq("The Hobbit")
+    end
+
   end
 
   describe 'Class Method' do
