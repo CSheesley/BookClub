@@ -93,9 +93,9 @@ RSpec.describe 'author show page', type: :feature do
       end
 
       expect(current_path).to eq(books_path)
-      expect(Author.count). to eq(1)
-      expect(Book.count).to eq(1)
       expect(Review.count).to eq(2)
+      expect(Book.count).to eq(1)
+      expect(Author.count). to eq(1)
     end
   end
 end
