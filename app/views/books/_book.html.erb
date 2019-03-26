@@ -19,7 +19,7 @@
       <%end%>
     </div>
       <div id = book-stats>
-        Average Rating: <%= book.average_rating %>
+        Average Rating: <%= book.average_rating.round(2) %>
         Total Reviews: <%= book.total_reviews %>
       </div>
     <%= link_to 'New Review', new_book_review_path(book) %>

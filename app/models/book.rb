@@ -55,7 +55,11 @@ class Book < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)
+    if reviews.average(:rating) == nil
+      2.5
+    else
+      reviews.average(:rating)
+    end
   end
 
   def total_reviews
