@@ -117,18 +117,22 @@ RSpec.describe "book index page", type: :feature do
 
         visit books_path
 
+        # save_and_open_page
+
         within '#statistics' do
           within '#top-reviewers' do
 
-            divs = page.all('div')
-            divs = divs.select { |div| div[:id][0..4] == 'user-' }
-            divs = divs.map { |div| div[:id][5..-1] }
+            spans = page.all('span')
+            spans = spans.select { |span| span[:id][0..4] == 'user-' }
+            spans = spans.map { |span| span[:id][5..-1] }
 
-            expect(divs[0]).to eq("User_2")
-            expect(divs[1]).to eq("User_1")
-            expect(divs[2]).to eq("User_3")
+            expect(spans[0]).to eq("User_2")
+            expect(spans[1]).to eq("User_1")
+            expect(spans[2]).to eq("User_3")
 
-            #1 - 4   2 - 7   3 - 1
+            expect(page).to have_content("User_2 - 7")
+            expect(page).to have_content("User_1 - 4")
+            expect(page).to have_content("User_3 - 1")
           end
         end
       end
