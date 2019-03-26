@@ -80,5 +80,21 @@ RSpec.describe 'book show page', type: :feature do
       expect(page).not_to have_selector('div', id:"book-card-#{book_2.id}")
 
     end
+    it 'should have stats for reviews of this book' do
+      author_2 = Author.create(name: "William Peterson")
+      author_3 = Author.create(name: "Corey Sheesley")
+
+      book_2 = author_2.books.create(title: "Title_2", pages: 400, year: 1998, cover: "othermadeupurl.com")
+      book_2.authors << author_3
+
+      review_1 = book_2.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
+      review_2 = book_2.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_2")
+      review_3 = book_2.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_3")
+      review_4 = book_2.reviews.create(title: "Data Pro" , text: "What a list!", rating: 1, user: "User_4")
+      review_4 = book_2.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_5")
+
+      visit book_path(book_2)
+    end
+
   end
 end
