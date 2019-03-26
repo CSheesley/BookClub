@@ -57,7 +57,7 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
 
     divs = page.all('div')
     divs = divs.select do |div|
-      (div[:id].split("-")[0] == 'review') & (div[:id].split("-").length == 2)
+      (div[:id][0..6] == 'review-') & (div[:id].split("-").length == 2)
     end.map{|div| div[:id].split("-")[1]}
 
     expect(divs[0]).to eq(@review_1.id.to_s)
