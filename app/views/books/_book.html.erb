@@ -6,9 +6,9 @@
     <%= book.title %>
     <% end %>
   </div>
-    <div id = book-pages>Pages: <%= book.pages %></div>
-    <div id = book-year>Year of Publication: <%= book.year %></div>
-    <div id = book-cover><img src = <%=book.cover%>></div>
+  <div id = book-cover><img src = <%=book.cover%>></div>
+  <div id = book-pages>Pages: <%= book.pages %></div>
+  <div id = book-year>Year of Publication: <%= book.year %></div>
     <div id = author-info>
       <% if defined?(author)== nil %>
       By:
