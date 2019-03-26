@@ -53,7 +53,8 @@ RSpec.describe Review, type: :model do
       review_6 = book_3.reviews.create(title: "Data Pro2" , text: "What a list!", rating: 5, user: "User_1")
 
       most_reviews = Review.most_reviews
-      expect(most_reviews).to eq(["User_1", "User_2","User_3"])
+      expect(most_reviews.pluck(:user)).to eq(["User_1", "User_2","User_3"])
+      expect(most_reviews.map{|r| r.review_count}).to eq([3,2,1])
     end
 
     it '.review_ag returns avg rating for a collection of reviews' do
