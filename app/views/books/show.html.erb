@@ -2,8 +2,8 @@
 
 <section id=book-info>
 <%= render @book, book_show_page: true %>
-
+<%= link_to "Delete", @book, method: :delete %>
 </section>
 <section id=reviews>
-<%= render @reviews %>
+  <%= render @reviews %>
 </section>

@@ -2,7 +2,7 @@ class Author < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   has_many :book_authors
-  has_many :books, through: :book_authors
+  has_many :books, through: :book_authors, dependent: :destroy
 
   def self.authors_from_string(author_string)
     string_list = author_string.split(",")

@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   validates :pages, presence: true, numericality: { greater_than: 0 }
 
   has_many :book_authors
-  has_many :authors, through: :book_authors
+  has_many :authors, through: :book_authors, dependent: :destroy
   has_many :reviews
 
   def author_names
