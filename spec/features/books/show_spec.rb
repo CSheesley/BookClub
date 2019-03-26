@@ -91,9 +91,29 @@ RSpec.describe 'book show page', type: :feature do
       review_2 = book_2.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_2")
       review_3 = book_2.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_3")
       review_4 = book_2.reviews.create(title: "Data Pro" , text: "What a list!", rating: 1, user: "User_4")
-      review_4 = book_2.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_5")
+      review_5 = book_2.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_5")
 
       visit book_path(book_2)
+
+      expect(page).to have_selector('div', id:"book-stats")
+      within '#book-stats' do
+        expect(page).to have_selector('div', id:'top-reviews')
+        within '#top-reviews' do
+          divs = page.all('div')
+          divs = divs.select{|d| d[:id][0..11] == "review-stub-"}.map{|d| d[:id][12..-1]}
+          expect(divs[0]).to eq(review_1.id.to_s)
+          expect(divs[1]).to eq(review_2.id.to_s)
+          expect(divs[2]).to eq(review_3.id.to_s)
+        end
+        expect(page).to have_selector('div', id:'top-reviews')
+        within '#bottom-reviews' do
+          divs = page.all('div')
+          divs = divs.select{|d| d[:id][0..11] == "review-stub-"}.map{|d| d[:id][12..-1]}
+          expect(divs[0]).to eq(review_4.id.to_s)
+          expect(divs[1]).to eq(review_5.id.to_s)
+          expect(divs[2]).to eq(review_3.id.to_s)
+        end
+      end
     end
 
   end
