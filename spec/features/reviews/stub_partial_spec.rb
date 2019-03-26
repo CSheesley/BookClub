@@ -13,7 +13,7 @@ RSpec.describe 'review partial stub render', type: :view do
     expect(rendered).to have_selector("div", id: "title", text: review_1.title)
     expect(rendered).to have_selector("div", id: "rating", text: review_1.rating)
 
-    expect(rendered).to have_selector("div", id: "user-#{review_1.user}", text: review_1.user)
+    expect(rendered).to have_selector("span", id: "user-#{review_1.user}", text: review_1.user)
     expect(rendered).not_to have_content(review_1.text)
   end
 end

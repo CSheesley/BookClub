@@ -23,7 +23,7 @@ RSpec.describe "book index page", type: :feature do
 
     @review_10 = @book_3.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 3, user: "User_1")
     @review_11 = @book_3.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
-    @review_12 = @book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 3, user: "User_2")
+    @review_12 = @book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 3, user: "User_3")
   end
 
   context 'as a visitor' do
@@ -76,7 +76,7 @@ RSpec.describe "book index page", type: :feature do
       it 'should have statistics area for all books showing the top rated books, worst rated books, and most active reviewers' do
 
         visit books_path
-        # save_and_open_page
+
         within '#statistics' do
           expect(page).to have_content('Best Books')
           expect(page).to have_content('Worst Books')
@@ -84,18 +84,58 @@ RSpec.describe "book index page", type: :feature do
         end
       end
 
-      # xit 'should show top three rated books - title and score' do
-      #
-      #   visit books_path
-      #
-      #   within '#statistics' do
-      #
-      #     expect(page).to have_content('Best Books')
-      #     expect(page).to have_content('Worst Books')
-      #     expect(page).to have_content('Top Reviewers')
-      #   end
-      # end
+      it 'should show top three / bottom three rated books - book_stub partial' do
 
+        visit books_path
+
+        within '#statistics' do
+          within '#best-books' do
+
+            divs = page.all('div')
+            divs = divs.select { |div| div[:id][0..9] == 'book-stub-' }
+            divs = divs.map { |div| div[:id][10..-1] }
+
+            expect(divs[0]).to eq(@book_1.id.to_s)
+            expect(divs[1]).to eq(@book_2.id.to_s)
+            expect(divs[2]).to eq(@book_3.id.to_s)
+          end
+
+          within '#worst-books' do
+
+            divs = page.all('div')
+            divs = divs.select { |div| div[:id][0..9] == 'book-stub-' }
+            divs = divs.map { |div| div[:id][10..-1] }
+
+            expect(divs[0]).to eq(@book_3.id.to_s)
+            expect(divs[1]).to eq(@book_2.id.to_s)
+            expect(divs[2]).to eq(@book_1.id.to_s)
+          end
+        end
+      end
+
+      it 'should show top three users based on number of reviews' do
+
+        visit books_path
+
+        # save_and_open_page
+
+        within '#statistics' do
+          within '#top-reviewers' do
+
+            spans = page.all('span')
+            spans = spans.select { |span| span[:id][0..4] == 'user-' }
+            spans = spans.map { |span| span[:id][5..-1] }
+
+            expect(spans[0]).to eq("User_2")
+            expect(spans[1]).to eq("User_1")
+            expect(spans[2]).to eq("User_3")
+
+            expect(page).to have_content("User_2 - 7")
+            expect(page).to have_content("User_1 - 4")
+            expect(page).to have_content("User_3 - 1")
+          end
+        end
+      end
 
       context 'when I select a sort option' do
         it 'should sort the books based on average ratings - best and worst' do
