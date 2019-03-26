@@ -94,7 +94,7 @@ RSpec.describe 'book show page', type: :feature do
       review_4 = book_2.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_5")
 
       visit book_path(book_2)
+    end
 
-      
   end
 end
