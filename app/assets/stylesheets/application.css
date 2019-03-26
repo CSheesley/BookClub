@@ -22,6 +22,10 @@
   width: 100px;
 }
 
+#statistics li div{
+  display:inline;
+}
+
 #welcome {
   font-size: 100px;
   display: flex;
@@ -30,7 +34,7 @@
 }
 
 #book-card {
-  
+
 }
 
 
