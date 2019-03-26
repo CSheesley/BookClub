@@ -9,6 +9,12 @@
   justify-content: space-around;
   height: 50px;
   background: gray;
+  align-items: center;
+}
+
+#statistics {
+  display: flex;
+  justify-content: space-around;
 }
 
 #logo {
@@ -23,7 +29,9 @@
   align-items: center;
 }
 
-
+#book-card {
+  
+}
 
 
 /*

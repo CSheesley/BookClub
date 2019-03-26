@@ -117,8 +117,6 @@ RSpec.describe "book index page", type: :feature do
 
         visit books_path
 
-        # save_and_open_page
-
         within '#statistics' do
           within '#top-reviewers' do
 
@@ -144,7 +142,8 @@ RSpec.describe "book index page", type: :feature do
 
           click_link'Best Rated'
           divs = page.all('div')
-          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}
+          divs = divs.map{|div| div[:id][10..-1]}
 
           expect(divs[0]).to eq(@book_1.id.to_s)
           expect(divs[1]).to eq(@book_2.id.to_s)
@@ -152,7 +151,8 @@ RSpec.describe "book index page", type: :feature do
 
           click_link'Worst Rated'
           divs = page.all('div')
-          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}
+          divs = divs.map{|div| div[:id][10..-1]}
 
           expect(divs[0]).to eq(@book_3.id.to_s)
           expect(divs[1]).to eq(@book_2.id.to_s)
@@ -165,7 +165,8 @@ RSpec.describe "book index page", type: :feature do
 
           click_link'Most Pages'
           divs = page.all('div')
-          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}
+          divs = divs.map{|div| div[:id][10..-1]}
 
           expect(divs[0]).to eq(@book_3.id.to_s)
           expect(divs[1]).to eq(@book_1.id.to_s)
@@ -173,7 +174,8 @@ RSpec.describe "book index page", type: :feature do
 
           click_link'Fewest Pages'
           divs = page.all('div')
-          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}
+          divs = divs.map{|div| div[:id][10..-1]}
 
           expect(divs[0]).to eq(@book_2.id.to_s)
           expect(divs[1]).to eq(@book_1.id.to_s)
@@ -186,7 +188,8 @@ RSpec.describe "book index page", type: :feature do
 
           click_link'Most Reviews'
           divs = page.all('div')
-          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}
+          divs = divs.map{|div| div[:id][10..-1]}
 
           expect(divs[0]).to eq(@book_1.id.to_s)
           expect(divs[1]).to eq(@book_2.id.to_s)
@@ -194,7 +197,8 @@ RSpec.describe "book index page", type: :feature do
 
           click_link'Fewest Reviews'
           divs = page.all('div')
-          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}.map{|div| div[:id][10..-1]}
+          divs = divs.select{ |div| div[:id][0..9] == 'book-card-'}
+          divs = divs.map{|div| div[:id][10..-1]}
 
           expect(divs[0]).to eq(@book_3.id.to_s)
           expect(divs[1]).to eq(@book_2.id.to_s)
@@ -204,26 +208,3 @@ RSpec.describe "book index page", type: :feature do
     end
   end
 end
-
-
-    # xit 'shows the three best and three worst books by review ranking (book title and rating score), and three users with the most reviews (user name and review count)' do
-    #   author_1 = Author.create(name: "J.R.R Tolkein")
-    #   author_2 = Author.create(name: "William Peterson")
-    #   author_3 = Author.create(name: "Corey Sheesley")
-    #
-    #   author_1.books.create(title: "The Hobbit", pages: 310, year: 1937, cover: 'http://madeupurl.com')
-    #   author_2.books.create(title: "Best Website Ever", pages: 100, year: 2018, cover: 'http://othermadeupurl.com')
-    #   author_3.books.create(title: "Best Website Ever", pages: 100, year: 2018, cover: 'http://othermadeupurl.com')
-    #
-    #   #best way to add reviews?
-    #   book_1 = author_1.books.first
-    #   book_2 = author_2.books.first
-    #
-    #   book_1.reviews.create(rating: 4, description: "Instant Classic.")
-    #   book_1.reviews.create(rating: 5, description: "What an Adventure.")
-    #   book_2.reviews.create(rating: 5, description: "A book by which all others are measured.")
-    #
-    #   visit '/books'
-    #
-
-    # end
