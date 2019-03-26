@@ -1,5 +1,26 @@
 <h1>Book Club</h1>
 
+<section id='statistics'>
+  <div id='best-books'>
+    <p>Best Books</p>
+    <% @top_books.each do |book| %>
+    <li><%= book.title %> - <%= book.average_rating.round(2) %></li>
+    <% end %>
+  </div>
+  <div id='worst-books'>
+    <p>Worst Books</p>
+    <% @worst_books.each do |book| %>
+    <li><%= book.title %> - <%= book.average_rating.round(2) %></li>
+    <% end %>
+  </div>
+  <div id='top-reviewers'>
+    <p>Top Reviewers</p>
+    <% @top_reviewers.each do |user| %>
+    <li><%= user.user %> - <%= user.review_count %></li>
+    <% end %>
+  </div>
+</section>
+
 <section id='sorting'>
   <div id='rating-sort'>
     <%= link_to 'Best Rated', books_path(sort: :sort_avg_reviews, direction: :desc) %>

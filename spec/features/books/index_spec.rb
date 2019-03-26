@@ -73,6 +73,30 @@ RSpec.describe "book index page", type: :feature do
         end
       end
 
+      it 'should have statistics area for all books showing the top rated books, worst rated books, and most active reviewers' do
+
+        visit books_path
+        save_and_open_page
+        within '#statistics' do
+          expect(page).to have_content('Best Books')
+          expect(page).to have_content('Worst Books')
+          expect(page).to have_content('Top Reviewers')
+        end
+      end
+
+      # xit 'should show top three rated books - title and score' do
+      #
+      #   visit books_path
+      #
+      #   within '#statistics' do
+      #
+      #     expect(page).to have_content('Best Books')
+      #     expect(page).to have_content('Worst Books')
+      #     expect(page).to have_content('Top Reviewers')
+      #   end
+      # end
+
+
       context 'when I select a sort option' do
         it 'should sort the books based on average ratings - best and worst' do
 
@@ -142,32 +166,6 @@ RSpec.describe "book index page", type: :feature do
 end
 
 
-    # xit 'shows the average rating next to each book title' do
-    #   author_1 = Author.create(name: "J.R.R Tolkein")
-    #   author_2 = Author.create(name: "William Peterson")
-    #   author_3 = Author.create(name: "Corey Sheesley")
-    #   # in author migration add (book_id:)
-    #
-    #   author_1.books.create(title: "The Hobbit", pages: 310, year: 1937, cover: 'http://madeupurl.com')
-    #   author_2.books.create(title: "Best Website Ever", pages: 100, year: 2018, cover: 'http://othermadeupurl.com')
-    #   author_3.books.create(title: "Best Website Ever", pages: 100, year: 2018, cover: 'http://othermadeupurl.com')
-    #   # in books migration add (author_id: , review_id: )
-    #
-    #   #add some reviews, linked to book objects
-    #
-    #   visit '/books'
-    #
-    #   within "#book-#{book_1.id}" do
-    #     expect(page).to have_content("Average Rating: #{book_1.avg_rating}")
-    #     expect(page).to have_content("Total Reviews: #{book_1.reviews.count}")
-    #   end
-    #   within "#book-#{book_2.id}" do
-    #     expect(page).to have_content("Average Rating: #{book_2.avg_rating}")
-    #     expect(page).to have_content("Total Reviews: #{book_2.reviews.count}")
-    #   end
-    # end
-    #
-    #
     # xit 'shows the three best and three worst books by review ranking (book title and rating score), and three users with the most reviews (user name and review count)' do
     #   author_1 = Author.create(name: "J.R.R Tolkein")
     #   author_2 = Author.create(name: "William Peterson")
