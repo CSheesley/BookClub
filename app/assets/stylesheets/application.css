@@ -44,6 +44,16 @@ div[id^=book-pair-] div[id^=book-card-]{
 width: 200px;
 }
 
+div[id^=review-pair-]{
+  display:flex;
+  flex-flow: row nowrap;
+
+}
+
+div[id^=review-pair-] div[id^=book-card-]{
+width: 200px;
+}
+
 #welcome {
   font-size: 100px;
   display: flex;

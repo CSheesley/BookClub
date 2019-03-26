@@ -12,8 +12,9 @@
   <div id=<%="book-pair-#{index+1}"%>>
     <%= render book, author: @author  %>
     <%= render book.sort_reviews(:desc, 1) %>
-    <br><br>
-    <br><br>
+
   </div>
+  <br><br>
+  <br><br>
   <% end %>
 </section>
