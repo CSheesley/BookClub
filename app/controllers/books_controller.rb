@@ -25,6 +25,19 @@ class BooksController < ApplicationController
     redirect_to book_path(@book)
   end
 
+  def destroy
+    book = Book.find(params[:id])
+    Review.destroy(book.reviews.ids)
+    Book.destroy(book.id)
+    # authors_to_delete = book.authors.select{|author| author.books.count == 1}
+    # if authors_to_delete.length >0
+    #   Author.dest(authors_to_delete.map{|a|a.id})
+    # end
+
+    binding.pry
+    redirect_to books_path
+  end
+
   private
 
   def book_params

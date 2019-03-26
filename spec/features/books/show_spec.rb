@@ -67,13 +67,15 @@ RSpec.describe 'book show page', type: :feature do
       visit book_path(book_2)
 
       expect(page).to have_link("Delete", href:book_path(book_2))
+      within "#book-info" do
+        click_link "Delete"
+      end
 
-      click_link "Delete"
 
       expect(current_path).to eq(books_path)
-      expect(Book.all.count).to eq(2)
-      expect(Author.all.count).to eq(2)
       expect(Review.all.count).to eq(2)
+      expect(Author.all.count).to eq(2)
+      expect(Book.all.count).to eq(2)
 
       expect(page).not_to have_selector('div', id:"book-card-#{book_2.id}")
 
