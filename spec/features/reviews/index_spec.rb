@@ -20,8 +20,9 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
   it 'Only shows the reviews from the given user' do
 
     visit book_path(@book_1)
-
-    click_link "User_1"
+    within "#review-#{@review_1.id}" do
+      click_link "User_1"
+    end
 
     expect(current_path).to eq(reviews_path)
     expect(page).to have_selector('div', id: "review-#{@review_1.id}")

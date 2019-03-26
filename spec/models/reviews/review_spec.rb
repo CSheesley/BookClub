@@ -54,7 +54,6 @@ RSpec.describe Review, type: :model do
 
       most_reviews = Review.most_reviews
       expect(most_reviews.pluck(:user)).to eq(["User_1", "User_2","User_3"])
-      binding.pry
       expect(most_reviews.map{|r| r.review_count}).to eq([3,2,1])
     end
 
