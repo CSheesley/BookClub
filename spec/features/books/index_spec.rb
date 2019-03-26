@@ -76,7 +76,7 @@ RSpec.describe "book index page", type: :feature do
       it 'should have statistics area for all books showing the top rated books, worst rated books, and most active reviewers' do
 
         visit books_path
-        save_and_open_page
+        # save_and_open_page
         within '#statistics' do
           expect(page).to have_content('Best Books')
           expect(page).to have_content('Worst Books')

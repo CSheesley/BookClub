@@ -12,8 +12,8 @@ class Review < ApplicationRecord
   end
 
   def self.most_reviews
-    select("user, count(user) as review_count").
-    order("count(user) DESC").
+    select("reviews.user, count(reviews.user) as review_count").
+    order("count(reviews.user) DESC").
     group(:user)
   end
 
