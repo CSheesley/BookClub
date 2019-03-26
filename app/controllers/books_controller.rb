@@ -14,6 +14,9 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
+    @top_books = Book.sort_avg_reviews(:desc)[0..2]
+    @worst_books = Book.sort_avg_reviews(:asc)[0..2]
+    @top_reviewers = Review.most_reviews[0..2]
   end
 
   def create
