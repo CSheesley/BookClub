@@ -16,7 +16,6 @@ RSpec.describe 'book partial render', type: :view do
     expect(rendered).to have_xpath("//img[@src='#{book_1.cover}']")
     expect(rendered).to have_selector('div', id:"author-#{author_1.id}")
     expect(rendered).to have_selector('div', id:"author-info", text: "By:")
-
   end
 
   it 'Should render the all book information of a book with two authors' do
@@ -47,7 +46,6 @@ RSpec.describe 'book partial render', type: :view do
     render book_1
     expect(rendered).to have_xpath("//a[@href='#{new_book_review_path(book_1)}']")
     expect(rendered).to have_selector('a', text: "New Review")
-
   end
 
   it 'Should print NO co-author information if there is only one author' do
@@ -58,7 +56,6 @@ RSpec.describe 'book partial render', type: :view do
 
     expect(rendered).not_to have_selector('div', id:'author-info', text: "With:")
     expect(rendered).not_to have_selector('div', id:'author-info', text: "By:")
-
   end
 
   it 'Should print ONLY the co-author name when specified' do
@@ -74,7 +71,6 @@ RSpec.describe 'book partial render', type: :view do
 
     expect(rendered).to have_selector('div', id:'author-info', text: "With:")
     expect(rendered).to have_selector('div', id:"author-#{author_2.id}")
-
   end
 
   it 'Should Give Link To Book show page by default' do

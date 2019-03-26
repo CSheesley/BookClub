@@ -70,8 +70,7 @@ RSpec.describe 'book show page', type: :feature do
       within "#book-info" do
         click_link "Delete"
       end
-
-
+      
       expect(current_path).to eq(books_path)
       expect(Review.all.count).to eq(2)
       expect(Author.all.count).to eq(2)
@@ -115,6 +114,5 @@ RSpec.describe 'book show page', type: :feature do
         end
       end
     end
-
   end
 end

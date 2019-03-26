@@ -20,6 +20,7 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
   it 'Only shows the reviews from the given user' do
 
     visit book_path(@book_1)
+
     within "#review-#{@review_1.id}" do
       click_link "User_1"
     end
@@ -33,6 +34,7 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
   it 'Shows books associated with the review' do
 
     visit reviews_path(user: "User_1")
+
     expect(page).to have_selector('div', id: 'review-pair-1')
     within "#review-pair-1" do
       expect(page).to have_selector('div', id: "review-#{@review_1.id}")
@@ -47,10 +49,10 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
 
     expect(page).not_to have_selector('div', id: 'review-pair-3')
     expect(page).not_to have_selector('div', id: "book-card-#{@book_3.id}")
-
   end
 
   it 'has links for sorting, that send to ordered page' do
+
     visit reviews_path(user: "User_1")
 
     click_link "Oldest First"
@@ -75,7 +77,9 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
   end
 
   it 'deletes a review when the delete button is pressed' do
+
     visit reviews_path(user: "User_1")
+
     within '#review-pair-1' do
       click_link "Delete"
     end
@@ -83,5 +87,4 @@ RSpec.describe 'review index page -- which is the user show page', type: :featur
     expect(page).not_to have_selector('div', id: "review-#{@review_1.id}")
     expect(page).to have_content("User_1")
   end
-
 end
