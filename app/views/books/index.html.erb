@@ -4,13 +4,13 @@
   <div id='best-books'>
     <p>Best Books</p>
     <% @top_books.each do |book| %>
-    <li><%= book.title %> - <%= book.average_rating.round(2) %></li>
+    <li><%= render 'application/book_stub', book: book %></li>
     <% end %>
   </div>
   <div id='worst-books'>
     <p>Worst Books</p>
     <% @worst_books.each do |book| %>
-    <li><%= book.title %> - <%= book.average_rating.round(2) %></li>
+    <li><%= render 'application/book_stub', book: book %></li>
     <% end %>
   </div>
   <div id='top-reviewers'>

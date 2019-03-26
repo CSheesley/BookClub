@@ -11,7 +11,7 @@ RSpec.describe 'book stub partial render', type: :view do
 
     expect(rendered).to have_selector('div', id:"book-stub-#{book_1.id}")
     expect(rendered).to have_selector('span', id:'book-title', text: book_1.title)
-    expect(rendered).to have_selector('span', id:'book-rating', text: book_1.average_rating)
+    expect(rendered).to have_selector('span', id:'book-rating', text: book_1.average_rating.round(2))
     expect(rendered).to have_link(book_1.title, href:book_path(book_1))
 
   end
