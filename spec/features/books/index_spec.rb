@@ -76,7 +76,7 @@ RSpec.describe "book index page", type: :feature do
       it 'should have statistics area for all books showing the top rated books, worst rated books, and most active reviewers' do
 
         visit books_path
-        # save_and_open_page
+
         within '#statistics' do
           expect(page).to have_content('Best Books')
           expect(page).to have_content('Worst Books')
@@ -84,18 +84,34 @@ RSpec.describe "book index page", type: :feature do
         end
       end
 
-      # xit 'should show top three rated books - title and score' do
-      #
-      #   visit books_path
-      #
-      #   within '#statistics' do
-      #
-      #     expect(page).to have_content('Best Books')
-      #     expect(page).to have_content('Worst Books')
-      #     expect(page).to have_content('Top Reviewers')
-      #   end
-      # end
+      it 'should show top three / bottom three rated books - book_stub partial' do
 
+        visit books_path
+
+        within '#statistics' do
+          within '#best-books' do
+
+            divs = page.all('div')
+            divs = divs.select { |div| div[:id][0..9] == 'book-stub-' }
+            divs = divs.map { |div| div[:id][10..-1] }
+
+            expect(divs[0]).to eq(@book_1.id.to_s)
+            expect(divs[1]).to eq(@book_2.id.to_s)
+            expect(divs[2]).to eq(@book_3.id.to_s)
+          end
+
+          within '#worst-books' do
+
+            divs = page.all('div')
+            divs = divs.select { |div| div[:id][0..9] == 'book-stub-' }
+            divs = divs.map { |div| div[:id][10..-1] }
+
+            expect(divs[0]).to eq(@book_3.id.to_s)
+            expect(divs[1]).to eq(@book_2.id.to_s)
+            expect(divs[2]).to eq(@book_1.id.to_s)
+          end
+        end
+      end
 
       context 'when I select a sort option' do
         it 'should sort the books based on average ratings - best and worst' do
