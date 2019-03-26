@@ -85,7 +85,7 @@ RSpec.describe Book, type: :model do
 
       review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
       review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
-    
+
       review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 5, user: "User_2")
 
       expect(book_1.average_rating.round(2)).to eq(4.67)
@@ -98,7 +98,7 @@ RSpec.describe Book, type: :model do
 
       review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
       review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
-  
+
       review_3 = book_1.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
       review_4 = book_1.reviews.create(title: "Data Pro" , text: "What a list!", rating: 2, user: "User_2")
 
@@ -129,7 +129,12 @@ RSpec.describe Book, type: :model do
       expect(bottom_review).to eq([review_4])
       expect(top3_reviews).to eq([review_1, review_2, review_3])
       expect(bottom3_reviews).to eq([review_4, review_3, review_2])
+    end
 
+    it '.average_rating gives default rating if no reviews for book' do
+      book = Book.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+
+      expect(book.average_rating).to eq(2.5)
     end
 
   end
