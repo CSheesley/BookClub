@@ -1,6 +1,19 @@
 <h1>Book Show Page</h1>
 
 <section id=book-info>
+  <div id=book-review-stats>
+    <div id=top-reviews>
+      <% @book.sort_reviews(:desc,3).each do |review| %>
+        <%= render 'application/review_stub', review:review %>
+      <%end%>
+    </div>
+
+    <div id=bottom-reviews>
+      <% @book.sort_reviews(:asc,3).each do |review| %>
+        <%= render 'application/review_stub', review:review %>
+      <%end%>
+    </div>
+  </div>
 <%= render @book, book_show_page: true %>
 <%= link_to "Delete", @book, method: :delete %>
 </section>

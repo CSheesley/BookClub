@@ -95,8 +95,8 @@ RSpec.describe 'book show page', type: :feature do
 
       visit book_path(book_2)
 
-      expect(page).to have_selector('div', id:"book-stats")
-      within '#book-stats' do
+      expect(page).to have_selector('div', id:"book-review-stats")
+      within '#book-review-stats' do
         expect(page).to have_selector('div', id:'top-reviews')
         within '#top-reviews' do
           divs = page.all('div')
