@@ -33,10 +33,31 @@
   align-items: center;
 }
 
-#book-card {
+section#all-books{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section#all-books div[id^=book-card]{
+  flex: 0 0 200px;
+  width: 200px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+div[id^=book-card-] img{
+  /* position: absolute; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 
 }
 
+section#author{
+  text-align: center;
+}
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files

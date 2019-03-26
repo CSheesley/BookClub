@@ -34,9 +34,8 @@
     <%= link_to 'Most Reviews', books_path(sort: :sort_num_reviews, direction: :desc) %>
     <%= link_to 'Fewest Reviews', books_path(sort: :sort_num_reviews, direction: :asc) %>
   </div>
+  <%= link_to 'Add Book', new_book_path %>
 </section>
-
-<%= link_to 'Add Book', new_book_path %>
 
 <section id ='all-books'>
     <%= render @books %>

@@ -1,9 +1,9 @@
 <h1>Author Show Page</h1>
 
 <section id="author">
-  <li><%= @author.name %><li>
+  <%= @author.name %>
     <div id=delete-author>
-      <%= link_to "Delete", @author, method: :delete %>
+      <%= link_to "Delete Author", @author, method: :delete %>
     </div>
 </section>
 
