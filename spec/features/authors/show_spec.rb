@@ -68,5 +68,9 @@ RSpec.describe 'author show page', type: :feature do
       end
 
     end
+
+    it 'Should have a link that deletes the author' do
+
+    end
   end
 end

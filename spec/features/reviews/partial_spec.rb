@@ -40,8 +40,8 @@ RSpec.describe 'review partial render', type: :view do
     review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
 
     render review_1
-    
-    expect(rendered).to have_selector('div', id: 'deletion', text:"Delete")
+
+    expect(rendered).to have_selector('div', id: 'review-deletion', text:"Delete")
     expect(rendered).to have_link("Delete", href: review_path(review_1))
   end
 end
