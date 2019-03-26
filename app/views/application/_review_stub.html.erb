@@ -1,0 +1,17 @@
+<div id = <%="review-stub-#{review.id}"%>>
+  <div id = title>
+    <%=review.title %>
+  </div>
+
+  <div id = rating>
+    <%= review.rating %>
+  </div>
+
+  <div id = "created">
+    <%= review.created_at %>
+  </div>
+
+  <%= render 'application/user', user:review.user %>
+
+
+</div>
