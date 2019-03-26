@@ -12,6 +12,10 @@
   align-items: center;
 }
 
+div#book-review-stats{
+  display: flex;
+  justify-content: space-around;
+}
 #statistics {
   display: flex;
   justify-content: space-around;
@@ -24,6 +28,20 @@
 
 #statistics li div{
   display:inline;
+}
+
+div[id^=author-]{
+  display:inline;
+}
+
+div[id^=book-pair-]{
+  display:flex;
+  flex-flow: row nowrap;
+
+}
+
+div[id^=book-pair-] div[id^=book-card-]{
+width: 200px;
 }
 
 #welcome {
@@ -47,12 +65,16 @@ section#all-books div[id^=book-card]{
 }
 
 div[id^=book-card-] img{
-  /* position: absolute; */
+  position: relative;
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 
+}
+
+div[id^=book-card] div#book-title{
+  text-align:center;
 }
 
 section#author{

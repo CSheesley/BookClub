@@ -3,12 +3,14 @@
 <section id=book-info>
   <div id=book-review-stats>
     <div id=top-reviews>
+      <h2>Top Reviews</h2>
       <% @book.sort_reviews(:desc,3).each do |review| %>
         <%= render 'application/review_stub', review:review %>
       <%end%>
     </div>
 
     <div id=bottom-reviews>
+      <h2>Bottom Reviews</h2>
       <% @book.sort_reviews(:asc,3).each do |review| %>
         <%= render 'application/review_stub', review:review %>
       <%end%>
@@ -17,6 +19,7 @@
 <%= render @book, book_show_page: true %>
 <%= link_to "Delete", @book, method: :delete %>
 </section>
+<br><br>
 <section id=reviews>
   <%= render @reviews %>
 </section>
