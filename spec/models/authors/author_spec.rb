@@ -39,8 +39,6 @@ RSpec.describe Author, type: :model do
       author_list = Author.authors_from_string(author_string)
       expect(author_list[0].name).to eq("Dan Brown")
       expect(author_list.length).to eq(1)
-
-
     end
   end
 end
