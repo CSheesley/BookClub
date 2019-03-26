@@ -16,7 +16,7 @@
   <div id='top-reviewers'>
     <p>Top Reviewers</p>
     <% @top_reviewers.each do |user| %>
-    <li><%= user.user %> - <%= user.review_count %></li>
+    <li><%= render 'application/user', user: user.user %> - <%= user.review_count %></li>
     <% end %>
   </div>
 </section>

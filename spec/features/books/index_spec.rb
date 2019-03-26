@@ -122,12 +122,11 @@ RSpec.describe "book index page", type: :feature do
 
             divs = page.all('div')
             divs = divs.select { |div| div[:id][0..4] == 'user-' }
-            divs = divs.map { |div| div[:id][4..-1] }
+            divs = divs.map { |div| div[:id][5..-1] }
 
             expect(divs[0]).to eq("User_2")
             expect(divs[1]).to eq("User_1")
             expect(divs[2]).to eq("User_3")
-
 
             #1 - 4   2 - 7   3 - 1
           end
