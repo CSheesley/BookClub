@@ -1,0 +1,8 @@
+<div id = <%="book-stub-#{book.id}"%> >
+  <span id = book-title >
+    <%= link_to book.title, book_path(book.id) %>
+  </span>
+  <span id=book-rating>
+    <%= book.average_rating.round(2) %>
+    </span>
+</div>
