@@ -2,6 +2,9 @@
 
 <section id="author">
   <li><%= @author.name %><li>
+    <div id=delete-author>
+      <%= link_to "Delete", @author, method: :delete %>
+    </div>
 </section>
 
 <section id="authors-books">

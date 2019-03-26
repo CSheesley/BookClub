@@ -68,5 +68,34 @@ RSpec.describe 'author show page', type: :feature do
       end
 
     end
+
+    it 'Should have a link that deletes the author' do
+
+        author_1 = Author.create(name: "J.R.R Tolkein")
+        author_2 = Author.create(name: "William Peterson")
+        author_3 = Author.create(name: "Corey Sheesley")
+
+        book_1 = author_1.books.create(title: "The Hobbit", pages: 200, year: 1999, cover: "madeupurl.com")
+        book_2 = author_2.books.create(title: "Title_2", pages: 400, year: 1998, cover: "othermadeupurl.com")
+        book_2.authors << author_3
+        book_3 = author_2.books.create(title: "Art of Data", pages: 400, year: 2000, cover: "otherothermadeupurl.com")
+
+        review_1 = book_1.reviews.create(title: "Great Book" , text: "What an adventure", rating: 5, user: "User_1")
+        review_2 = book_1.reviews.create(title: "Nice Read" , text: "Very enjoyable", rating: 4, user: "User_1")
+        review_3 = book_2.reviews.create(title: "If you have too" , text: "Meh", rating: 3, user: "User_2")
+        review_4 = book_3.reviews.create(title: "Data Pro" , text: "What a list!", rating: 5, user: "User_2")
+
+      visit author_path(author_2)
+
+      expect(page).to have_selector('div', id:'delete-author')
+      within '#delete-author' do
+        click_link "Delete"
+      end
+
+      expect(current_path).to eq(books_path)
+      expect(Review.count).to eq(2)
+      expect(Book.count).to eq(1)
+      expect(Author.count). to eq(1)
+    end
   end
 end
