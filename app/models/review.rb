@@ -12,9 +12,9 @@ class Review < ApplicationRecord
   end
 
   def self.most_reviews
-    group(:user).
+    select("user, count(user) as review_count").
     order("count(user) DESC").
-    pluck(:user)
+    group(:user)
   end
 
   def self.avg_rating
