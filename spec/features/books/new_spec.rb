@@ -13,7 +13,7 @@ RSpec.describe 'new book workflow', type: :feature do
     it 'shows have an add book link, which takes me to a form to fill out' do
 
       visit books_path
-
+      
       click_link 'Add Book'
 
       expect(current_path).to eq(new_book_path)
