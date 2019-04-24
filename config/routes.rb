@@ -2,17 +2,12 @@ Rails.application.routes.draw do
 
   root to: 'welcome#index'
 
-  # resources :books, only: [:index, :show, :new, :create, :destroy] do
-  #     resources :reviews, only: [:new, :create]
-  #   end
-
-  # resources :authors, only: [:show, :destroy]
-  # resources :reviews, only: [:index, :destroy]
-
+### Hand-rolled version
+  # is '/books/new' restful?
 
   get '/books', to: 'books#index'
-  get '/books/:id', to: 'books#show', as: 'book'
   get '/books/new', to: 'books#new', as: 'new_book'
+  get '/books/:id', to: 'books#show', as: 'book'
   post '/books', to: 'books#create'
   delete '/books/:id', to: 'books#destroy'
 
@@ -26,6 +21,13 @@ Rails.application.routes.draw do
   delete '/reviews/:id', to: 'reviews#destroy', as: 'review'
 
 
+### Previous Version
+  # resources :books, only: [:index, :show, :new, :create, :destroy] do
+  #     resources :reviews, only: [:new, :create]
+  #   end
+
+  # resources :authors, only: [:show, :destroy]
+  # resources :reviews, only: [:index, :destroy]
 
 
 end
