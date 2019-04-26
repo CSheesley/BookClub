@@ -6,7 +6,7 @@ class AuthorsController < ApplicationController
 
   def destroy
     author = Author.find(params[:id])
-    books = author.books
+    books =  author.books
     reviews = books.map{|b| b.reviews}.flatten
     reviews.each{|review| review.destroy}
     Book.destroy(books.ids)
